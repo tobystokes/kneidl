@@ -55,6 +55,7 @@ const tilt = (i) => ({
   font-size: 125%;
   /* outline: var(--col-bg-light) solid 1px; */
   position: relative;
+  transition: background-color 0.4s;
 }
 .filled {
   background-color: var(--col-primary);
@@ -79,8 +80,14 @@ input[type="text"] {
   width: 100%;
   opacity: 0.01;
 }
-[data-invalid="true"] {
-  border: 3px solid red;
+[data-invalid="true"] .letter {
+  /* border: 3px solid red; */
+  animation-name: shake;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+[data-invalid="true"] .letter {
 }
 
 @keyframes blink {
@@ -92,6 +99,30 @@ input[type="text"] {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes shake {
+  20%,
+  80% {
+    transform: translateX(-0.125rem);
+  }
+
+  60%,
+  80% {
+    transform: translateX(0.125rem);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translateX(-0.25rem);
+    background-color: var(--col-wrong);
+  }
+
+  40%,
+  60% {
+    transform: translateX(0.25rem);
   }
 }
 </style>

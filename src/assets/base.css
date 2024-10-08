@@ -5,6 +5,8 @@
   --col-text: #1b2913;
   --col-right: #49a465;
   --col-warm: #d7d760;
+  --col-wrong: #ad2a83;
+  --t-ff: "obviously-variable", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +22,7 @@
 
 body {
   min-height: 100vh;
-  font-family: "obviously-variable", sans-serif;
+  font-family: var(--t-ff);
   font-variation-settings: "ital" 0, "wdth" 100, "wght" 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -46,4 +48,12 @@ li {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--t-ff);
+  cursor: pointer;
 }

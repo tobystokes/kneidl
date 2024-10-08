@@ -2,6 +2,7 @@
 import { useGameStore } from "@/stores/game";
 const game = useGameStore();
 import GameBoard from "./components/GameBoard.vue";
+import Keyboard from "./components/Keyboard.vue";
 import { onMounted } from "vue";
 onMounted(() => {
   game.startNewGame();
@@ -15,6 +16,7 @@ onMounted(() => {
     <main>
       <GameBoard />
     </main>
+    <Keyboard />
   </div>
 </template>
 

@@ -17,7 +17,7 @@
       </li>
     </ul>
 
-    <LetterInput v-if="!game.solved" />
+    <LetterInput v-show="!game.solved" />
     <div class="remainingGuess" v-for="i in game.remainingGuesses"></div>
   </div>
 </template>

@@ -48,7 +48,7 @@ export const useGameStore = defineStore('game', {
             document.querySelector('input[type="text"').focus();
         },
         guessWord() {
-            if (this.invalidGuess) {
+            if (this.guess.length < 5 || this.invalidGuess) {
                 return;
             }
             this.guesses.push(this.guess.toUpperCase());
