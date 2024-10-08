@@ -1,13 +1,30 @@
 <script setup>
+import { useGameStore } from "@/stores/game";
+const game = useGameStore();
 import GameBoard from "./components/GameBoard.vue";
+import { onMounted } from "vue";
+onMounted(() => {
+  game.startNewGame();
+});
 </script>
 
 <template>
-  <header></header>
+  <div class="screen">
+    <header></header>
 
-  <main>
-    <GameBoard />
-  </main>
+    <main>
+      <GameBoard />
+    </main>
+  </div>
 </template>
 
-<style></style>
+<style>
+.screen {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh;
+  max-width: 48rem;
+  margin: auto;
+}
+</style>

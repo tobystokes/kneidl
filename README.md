@@ -1,4 +1,4 @@
-# flapdoodle
+# kneidle
 
 Why another wordle thing? Wasn't this over in 2021?
 
@@ -7,7 +7,9 @@ Yeah, but the one i like to play, Quordle, has become unusable due to ads. And i
 Also, to experiment with a more interesting design. 
 Using a variable font to squish some grids.
 
+### Kneidle?
 
+Knaidel, or Knaidl, or Kneidel, or Kneidle, or Knaydel, or Kneydel, or Kneydl, or Kneidl, or Kneidl, or Kneidell, or Kneidelach, or Kneidels, or Kneidels, or Kneidlach, or Kneidla, or Kneidale, or Kneidalech, or Kneidalech, or Kneidalekh, or Kneidalekh is a Yiddish word for matzo ball. 
 
 ## Project Setup
 

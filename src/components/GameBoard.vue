@@ -1,29 +1,24 @@
 <template>
-  <div>
+  <div class="board">
     <button type="button" @click="game.startNewGame()">Start New Game</button>
-    <LetterInput />
 
-    <h2>Guesses</h2>
-    <ul>
+    <ul aria-label="Previous guesses" class="guesses">
       <li v-for="guess in game.guesses" :key="guess.id">
         <span
           v-for="(letter, i) in guess"
           :class="{
+            letter: true,
+            warm: game.word.includes(letter) && letter != game.word[i],
             right: letter == game.word[i],
-            rlwp: game.word.includes(letter) && letter != game.word[i],
           }"
+          :style="tilt()"
           >{{ letter }}</span
         >
       </li>
     </ul>
-    <h3>guessedLetters</h3>
-    {{ game.guessedLetters }}
-    <h3>Game word</h3>
-    {{ game.word }}
-    <h3>incorrect:</h3>
-    {{ game.incorrectLetters }}
-    <h3>Game solved</h3>
-    {{ game.solved }}
+
+    <LetterInput v-if="!game.solved" />
+    <div class="remainingGuess" v-for="i in game.remainingGuesses"></div>
   </div>
 </template>
 
@@ -31,23 +26,53 @@
 import LetterInput from "./LetterInput.vue";
 import { useGameStore } from "@/stores/game";
 const game = useGameStore();
-import { computed, ref } from "vue";
-const guess = ref("");
-const onSubmit = () => {
-  game.guessWord(guess.value);
-  guess.value = "";
-};
+import { computed } from "vue";
+// can't be compuited because that caches the random values!
+const tilt = () => ({
+  transform: `rotateY(${Math.random() * 20 - 10}deg) rotateX(${
+    Math.random() * 6 - 3
+  }deg) rotateZ(${Math.random() * 2 - 1}deg)`,
+});
 </script>
 
 <style scoped>
 form {
   display: flex;
 }
-.right {
-  background-color: green;
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
-.rlwp {
+.guesses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.guesses .letter {
+  /*wrong */
+  background-color: var(--col-primary);
+  color: white;
+  font-variation-settings: "wdth" 200, "wght" 250;
+}
+.guesses .right {
+  background-color: var(--col-right);
+  font-variation-settings: "wdth" 200, "wght" 800;
+}
+.guesses .warm {
   /* Right Letter, Wrong Place */
-  background-color: yellow;
+  background-color: var(--col-warm);
+  font-variation-settings: "wdth" 200, "wght" 600;
+}
+.guesses li {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(5, 1fr);
+  perspective: 10rem;
+}
+.remainingGuess {
+  width: 100%;
+  height: 0.5rem;
+  background-color: var(--col-bg);
 }
 </style>
