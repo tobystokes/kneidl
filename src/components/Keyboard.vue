@@ -45,8 +45,6 @@ const keyClick = (key) => {
   } else {
     game.guess += key;
   }
-  // feels like an a11y no-no?
-  document.querySelector('input[type="text"').focus();
 };
 </script>
 
@@ -54,6 +52,8 @@ const keyClick = (key) => {
 .keyboard {
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   padding: 1rem;
   background-color: var(--col-bg);

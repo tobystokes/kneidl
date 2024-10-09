@@ -20,6 +20,18 @@
   font-weight: normal;
 }
 
+/**
+   0.8rem of base 16px = 12.8px
+   so if vh + vw = 2560,
+   i.e. 1600 * 960 or 1280 * 1280: rem = 16px
+   360 * 600 or 480 * 480: rem = 14px
+   2400 * 1440: rem = 17.6px
+ */
+:root {
+  font-size: calc(0.8rem + 0.125vw + 0.125vh);
+  line-height: 1.5;
+}
+
 body {
   min-height: 100vh;
   font-family: var(--t-ff);
@@ -54,6 +66,7 @@ button,
 input,
 select,
 textarea {
+  font-size: 1rem;
   font-family: var(--t-ff);
   cursor: pointer;
 }

@@ -6,10 +6,17 @@
   align-items: center;
   background-color: var(--col-bg);
   /* aspect-ratio: 1; */
-  padding: 0.2em;
-  padding-top: 0.4em;
+  padding-block: 0.2em;
+  padding-top: 0.3em;
+  padding-bottom: 0;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0.1em 0.1em 0
     color-mix(in srgb, var(--col-text) 25%, transparent);
+}
+.letter:first-of-type {
+  border-radius: 0.125em 0 0 0.125em;
+}
+.letter:last-of-type {
+  border-radius: 0 0.125em 0.125em 0;
 }

@@ -1,37 +1,45 @@
 <template>
   <div class="board">
-    <button type="button" @click="game.startNewGame()">Start New Game</button>
-
     <ul aria-label="Previous guesses" class="guesses">
-      <li v-for="guess in game.guesses" :key="guess.id">
+      <li v-for="guess in preGuesses">
         <span
           v-for="(letter, i) in guess"
           :class="{
             letter: true,
-            warm: game.word.includes(letter) && letter != game.word[i],
-            right: letter == game.word[i],
+            warm: board?.includes(letter) && letter != board?.charAt(i),
+            right: letter == board[i],
+            solved: guess == board,
           }"
-          :style="tilt()"
           >{{ letter }}</span
         >
       </li>
     </ul>
 
-    <LetterInput v-show="!game.solved" />
-    <div class="remainingGuess" v-for="i in game.remainingGuesses"></div>
+    <CurrentGuess
+      v-if="!game.guesses.includes(board) && game.remainingGuesses > 0"
+    />
+    <template v-if="game.remainingGuesses > 0">
+      <div class="remainingGuess" v-for="i in game.remainingGuesses - 1"></div>
+    </template>
   </div>
 </template>
 
 <script setup>
-import LetterInput from "./LetterInput.vue";
 import { useGameStore } from "@/stores/game";
-const game = useGameStore();
 import { computed } from "vue";
-// can't be compuited because that caches the random values!
-const tilt = () => ({
-  transform: `rotateY(${Math.random() * 20 - 10}deg) rotateX(${
-    Math.random() * 6 - 3
-  }deg) rotateZ(${Math.random() * 2 - 1}deg)`,
+import CurrentGuess from "./CurrentGuess.vue";
+const game = useGameStore();
+
+const props = defineProps({
+  boardIndex: Number,
+});
+const board = computed(() => game.words[props.boardIndex]);
+
+const preGuesses = computed(() => {
+  let solvedAfter = game.guesses.indexOf(board.value);
+  return solvedAfter == -1
+    ? game.guesses
+    : game.guesses.slice(0, solvedAfter + 1);
 });
 </script>
 
@@ -43,6 +51,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  max-width: 20rem;
+  container-type: inline-size;
+  align-self: center;
+  justify-self: center;
 }
 .guesses {
   display: flex;
@@ -51,28 +63,34 @@ form {
 }
 .guesses .letter {
   /*wrong */
-  background-color: var(--col-primary);
+  background-color: color-mix(in srgb, var(--col-primary) 75%, var(--col-bg));
   color: white;
   font-variation-settings: "wdth" 200, "wght" 250;
+  font-size: 7.5cqi;
 }
 .guesses .right {
   background-color: var(--col-right);
-  font-variation-settings: "wdth" 200, "wght" 800;
+  font-variation-settings: "wdth" 200, "wght" 600;
 }
 .guesses .warm {
   /* Right Letter, Wrong Place */
   background-color: var(--col-warm);
   font-variation-settings: "wdth" 200, "wght" 600;
 }
+.guesses .solved {
+  font-variation-settings: "wdth" 60, "wght" 600;
+  font-size: 200%;
+}
 .guesses li {
   display: grid;
-  gap: 1px;
+  /* gap: 1px; */
   grid-template-columns: repeat(5, 1fr);
-  perspective: 10rem;
+  /* perspective: 10rem; */
 }
 .remainingGuess {
   width: 100%;
   height: 0.5rem;
   background-color: var(--col-bg);
+  border-radius: 0.125em;
 }
 </style>
