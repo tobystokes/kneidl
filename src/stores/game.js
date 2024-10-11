@@ -44,6 +44,29 @@ export const useGameStore = defineStore('game', {
         solved: (state) => state.words.every(word => state.guesses.includes(word)),
         invalidGuess: (state) => state.guess.length == 5 && wordlist.indexOf(state.guess.toUpperCase()) == -1,
         remainingGuesses: (state) => state.maxGuesses - state.guesses.length,
+        keyMarkers: (state) => {
+            let keys = {};
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
+                keys[letter] = state.words.map(word => {
+                    if (word.includes(letter)) {
+                        for (let i = 0; i < 5; i++) {
+                            if (word[i] == letter) {
+                                if (state.guesses.some(guess => guess[i] == letter)) {
+                                    return 'right';
+                                } else if (state.guesses.some(guess => guess.includes(letter))) {
+                                    return 'warm';
+                                } else {
+                                    return 'cold'; // no guesses yet!
+                                }
+                            }
+                        }
+                    } else {
+                        return 'cold';
+                    }
+                });
+            });
+            return keys;
+        },
     },
     actions: {
         startNewGame() {

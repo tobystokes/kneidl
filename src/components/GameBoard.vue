@@ -53,8 +53,6 @@ form {
   gap: 0.25rem;
   max-width: 20rem;
   container-type: inline-size;
-  align-self: center;
-  justify-self: center;
 }
 .guesses {
   display: flex;

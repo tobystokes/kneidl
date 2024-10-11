@@ -1,36 +1,74 @@
 <template>
-  <div class="keyboard">
-    <div class="row" v-for="(row, i) in rows">
-      <button
-        v-if="i == 2"
-        @click="keyClick('⌫')"
-        :disabled="game.guess.length == 0"
-        class="wide"
-      >
-        ⌫
-      </button>
-      <button
-        v-for="key in row"
-        @click="keyClick(key)"
-        :disabled="game.incorrectLetters.includes(key)"
-      >
-        {{ key }}
-      </button>
-      <button
-        v-if="i == 2"
-        @click="keyClick('↵')"
-        :disabled="game.guess.length < 5"
-        class="wide"
-      >
-        ↵
-      </button>
+  <div class="keyboard-bg">
+    <div class="keyboard-cq">
+      <div class="keyboard">
+        <div class="row" v-for="(row, i) in rows">
+          <button
+            v-if="i == 2"
+            @click="keyClick('⌫')"
+            :disabled="game.guess.length == 0"
+            class="wide"
+          >
+            ⌫
+          </button>
+          <button
+            v-for="key in row"
+            @click="keyClick(key)"
+            :disabled="game.incorrectLetters.includes(key)"
+            :style="keystyle[key]"
+          >
+            {{ key }}
+          </button>
+          <button
+            v-if="i == 2"
+            @click="keyClick('↵')"
+            :disabled="game.guess.length < 5"
+            class="wide"
+          >
+            ↵
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { useGameStore } from "@/stores/game";
 const game = useGameStore();
+
+const keystyle = computed(() => {
+  let keystyle = {};
+  for (const [key, arr] of Object.entries(game.keyMarkers)) {
+    if (arr.length > 0) {
+      if (arr.length == 1) {
+        keystyle[key] = {
+          "--keystyle": `var(--col-${arr[0]})`,
+        };
+        continue;
+      }
+      let angles = arr
+        .map((state, index) => {
+          let angle = 360 / arr.length;
+          if (index == 0) {
+            angle = angle * (index + 1) + "deg";
+          } else if (index == arr.length - 1) {
+            angle = angle * index + "deg";
+          } else {
+            angle = angle * index + "deg " + angle * (index + 1) + "deg";
+          }
+
+          return `var(--col-${state}) ${angle}`;
+        })
+        .join(",");
+      keystyle[key] = {
+        "--keystyle": `conic-gradient(${angles})`,
+      };
+    }
+  }
+  return keystyle;
+});
 
 const rows = [
   "QWERTYUIOP".split(""),
@@ -49,7 +87,7 @@ const keyClick = (key) => {
 </script>
 
 <style scoped>
-.keyboard {
+.keyboard-bg {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -57,33 +95,60 @@ const keyClick = (key) => {
   width: 100%;
   padding: 1rem;
   background-color: var(--col-bg);
+}
+.keyboard-cq {
+  container-type: inline-size;
+  width: min(100%, 48rem);
+  margin: auto;
+}
+.keyboard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 2cqi;
 }
 .keyboard .row {
   display: flex;
-  gap: 0.25rem;
+  gap: 2cqi;
 }
 .keyboard button {
   position: relative;
-  padding: 0.4rem 0.5rem 0.2rem 0.5rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8cqi;
+  height: 10cqi;
+  font-size: 5cqi;
+  line-height: 1;
+  padding-top: 0.33em;
   border: none;
   color: var(--col-primary);
   background-color: var(--col-bg-light);
-  border-radius: 0.25rem;
+  background-clip: padding-box;
+  border: solid transparent 0.75cqi;
+  border-radius: 1.5cqi;
   cursor: pointer;
   text-transform: uppercase;
-  font-variation-settings: "wdth" 100, "wght" 600;
-  box-shadow: 0.2rem 0.2rem 0rem rgba(0, 0, 0, 0.1);
+  font-variation-settings: "wdth" 100, "wght" 500;
 }
-.keyboard button:active {
-  transform: translateY(0.1rem);
-  box-shadow: 0.1rem 0.1rem 0rem rgba(0, 0, 0, 0.1);
+.keyboard button:before {
+  content: "";
+  position: absolute;
+  inset: -0.75cqi;
+  border-radius: 1.5cqi;
+  z-index: -1;
+  background-color: var(--col-bg-light);
+  /* background: conic-gradient(red, green, red, green, red); */
+  background: var(--keystyle, var(--col-bg-light));
+  box-shadow: 1cqi 1cqi 0 rgba(0, 0, 0, 0.1);
+}
+.keyboard button:active:before {
+  transform: translateY(0.5cqi);
+  box-shadow: 1cqi 0.5cqi 0 rgba(0, 0, 0, 0.1);
 }
 .keyboard button.wide {
-  padding-inline: 0.75rem;
+  width: 12cqi;
 }
 [disabled] {
   opacity: 0.5;

@@ -5,6 +5,7 @@
   --col-text: #1b2913;
   --col-right: #49a465;
   --col-warm: #d7d760;
+  --col-cold: var(--col-bg-light);
   --col-wrong: #ad2a83;
   --t-ff: "obviously-variable", sans-serif;
 }

@@ -15,14 +15,11 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { useEventListener } from "@vueuse/core";
 import { useGameStore } from "@/stores/game";
 const game = useGameStore();
-onMounted(() => {
-  document.addEventListener("keyup", onKeyUp);
-});
-const onKeyUp = (event) => {
-  console.log(event.key);
+
+useEventListener(document, "keyup", (event) => {
   if (
     event.key.length === 1 &&
     event.key.match(/[a-z]/i) &&
@@ -36,7 +33,7 @@ const onKeyUp = (event) => {
   if (event.key === "Enter") {
     game.guessWord();
   }
-};
+});
 </script>
 
 <style scoped></style>
