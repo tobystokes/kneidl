@@ -6,9 +6,9 @@
           v-for="(letter, i) in guess"
           :class="{
             letter: true,
-            warm: board?.includes(letter) && letter != board?.charAt(i),
-            right: letter == board[i],
-            solved: guess == board,
+            warm: word?.includes(letter) && letter != word?.charAt(i),
+            right: letter == word[i],
+            solved: guess == word,
           }"
           >{{ letter }}</span
         >
@@ -16,7 +16,7 @@
     </ul>
 
     <CurrentGuess
-      v-if="!game.guesses.includes(board) && game.remainingGuesses > 0"
+      v-if="!game.guesses.includes(word) && game.remainingGuesses > 0"
     />
     <template v-if="game.remainingGuesses > 0">
       <div class="remainingGuess" v-for="i in game.remainingGuesses - 1"></div>
@@ -33,10 +33,11 @@ const game = useGameStore();
 const props = defineProps({
   boardIndex: Number,
 });
-const board = computed(() => game.words[props.boardIndex]);
+const word = computed(() => game.words[props.boardIndex]);
 
 const preGuesses = computed(() => {
-  let solvedAfter = game.guesses.indexOf(board.value);
+  if (!word.value) return [];
+  let solvedAfter = game.guesses.indexOf(word.value);
   return solvedAfter == -1
     ? game.guesses
     : game.guesses.slice(0, solvedAfter + 1);
