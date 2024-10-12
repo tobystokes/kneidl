@@ -1,10 +1,10 @@
 <template>
-  <form @submit.prevent="game.guessWord()">
+  <form @submit.prevent="guessWord()">
     <label for="letter" class="u-invisible">Enter a letter:</label>
     <input
       type="text"
       class="u-invisible"
-      v-model="game.guess"
+      v-model="state.guess"
       minlength="5"
       maxlength="5"
       required
@@ -16,22 +16,22 @@
 
 <script setup>
 import { useEventListener } from "@vueuse/core";
-import { useGameStore } from "@/stores/game";
-const game = useGameStore();
+import { useGame } from "@/composables/useGame";
+const { state, guessWord } = useGame();
 
 useEventListener(document, "keyup", (event) => {
   if (
     event.key.length === 1 &&
     event.key.match(/[a-z]/i) &&
-    game.guess.length < 5
+    state.guess.length < 5
   ) {
-    game.guess += event.key.toUpperCase();
+    state.guess += event.key.toUpperCase();
   }
   if (event.key === "Backspace") {
-    game.guess = game.guess.slice(0, -1);
+    state.guess = state.guess.slice(0, -1);
   }
   if (event.key === "Enter") {
-    game.guessWord();
+    guessWord();
   }
 });
 </script>

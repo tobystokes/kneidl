@@ -1,24 +1,25 @@
 <script setup>
-import { useGameStore } from "@/stores/game";
-const game = useGameStore();
-import GameBoard from "./components/GameBoard.vue";
-import Keyboard from "./components/Keyboard.vue";
-
 import { onMounted } from "vue";
+import { useGame } from "@/composables/useGame";
+import GameBoard from "@/components/GameBoard.vue";
+import Keyboard from "@/components/Keyboard.vue";
+
 import LetterInput from "./components/LetterInput.vue";
+
+const { state, startNewGame, changeBoardSize, remainingGuesses } = useGame();
 onMounted(() => {
-  game.startNewGame();
+  startNewGame();
 });
 </script>
 
 <template>
   <div class="screen">
     <header>
-      <button type="button" @click="game.startNewGame()">Start New Game</button>
+      <button type="button" @click="startNewGame()">Start New Game</button>
       <input
         type="range"
-        v-model.number="game.boards"
-        @change="game.changeBoardSize()"
+        v-model.number="state.boards"
+        @change="changeBoardSize()"
         min="1"
         max="6"
       />
@@ -27,15 +28,13 @@ onMounted(() => {
     <main>
       <LetterInput />
       <div class="game-grid">
-        <GameBoard v-for="i in game.boards" :board-index="i - 1" />
+        <GameBoard v-for="i in state.boards" :board-index="i - 1" />
       </div>
-      <div v-if="game.solved" class="solved">
+      <div v-if="state.solved" class="solved">
         <h2>Les jeux sont fin!</h2>
-        <button type="button" @click="game.startNewGame()">
-          Start New Game
-        </button>
+        <button type="button" @click="startNewGame()">Start New Game</button>
       </div>
-      <div v-if="!game.solved && game.remainingGuesses <= 0">you lost</div>
+      <div v-if="!state.solved && remainingGuesses <= 0">you lost</div>
     </main>
     <Keyboard />
   </div>
@@ -53,8 +52,8 @@ onMounted(() => {
 main {
 }
 .game-grid {
-  display: inline-grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: 1rem;
   justify-content: center;
   margin: 1rem;

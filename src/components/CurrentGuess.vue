@@ -1,21 +1,21 @@
 <template>
-  <div class="guess" :data-invalid="game.invalidGuess">
+  <div class="guess" :data-invalid="invalidGuess">
     <div
       class="letter"
       v-for="i in 5"
       :class="{
-        filled: game.guess[i - 1],
-        focussed: i == game.guess.length + 1,
+        filled: state.guess[i - 1],
+        focussed: i == state.guess.length + 1,
       }"
     >
-      {{ game.guess[i - 1] ?? " " }}
+      {{ state.guess[i - 1] ?? " " }}
     </div>
   </div>
 </template>
 
 <script setup>
-import { useGameStore } from "@/stores/game";
-const game = useGameStore();
+import { useGame } from "@/composables/useGame";
+const { state, invalidGuess } = useGame();
 </script>
 
 <style scoped>
