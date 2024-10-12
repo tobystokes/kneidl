@@ -3,11 +3,13 @@
   --col-bg: #c0c5bc;
   --col-primary: #5a6356;
   --col-text: #1b2913;
+  --col-text-reverse: #f5f5f5;
   --col-right: #49a465;
   --col-warm: #d7d760;
   --col-cold: var(--col-bg-light);
   --col-wrong: #ad2a83;
   --t-ff: "obviously-variable", sans-serif;
+  --header-height: 4rem;
 }
 
 @media (prefers-color-scheme: dark) {

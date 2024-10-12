@@ -27,6 +27,18 @@ export const useGameStore = defineStore('game', {
          * The number of boards in play
          */
         boards: useStorage('boards', 1),
+
+        /**
+         * @type {boolean}
+         * check for key events etc
+         */
+        isActive: true,
+
+        /**
+         * @type {number}
+         * Just gonna gradually move down the wordlist
+         */
+        usedWordIndex: useStorage('usedWordIndex', 0),
     }),
     getters: {
         guessedLetters: (state) => {
@@ -66,13 +78,8 @@ export const useGameStore = defineStore('game', {
     },
     actions: {
         startNewGame() {
-            // console.log('Starting new game');
             this.resetGame();
-            // this.word = 'hello';
-            for (let i = 0; i < this.boards; i++) {
-                this.words.push(wordlist[Math.floor(Math.random() * wordlist.length)]);
-            }
-            // this.word = wordlist[Math.floor(Math.random() * wordlist.length)]; // .toUpperCase()
+            this.words = wordlist.slice(this.usedWordIndex, this.usedWordIndex + this.boards);
         },
         guessWord() {
             if (this.guess.length != 5 || this.invalidGuess) {
@@ -82,20 +89,13 @@ export const useGameStore = defineStore('game', {
             this.guess = '';
         },
         resetGame() {
+            this.usedWordIndex += this.words.length;
             this.words = [];
             this.guess = '';
             this.guesses = [];
         },
         changeBoardSize() {
-            let diff = this.boards - this.words.length;
-            if (diff < 0) {
-                this.words = this.words.slice(0, this.boards);
-            }
-            if (diff > 0) {
-                for (let i = 0; i < diff; i++) {
-                    this.words.push(wordlist[Math.floor(Math.random() * wordlist.length)]);
-                }
-            }
+            this.words = wordlist.slice(this.usedWordIndex, this.usedWordIndex + this.boards);
         }
     },
 })

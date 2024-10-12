@@ -20,3 +20,14 @@
 .letter:last-of-type {
   border-radius: 0 0.125em 0.125em 0;
 }
+
+.button {
+  background-color: var(--col-primary);
+  color: var(--col-bg-light);
+  padding: 1rem;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.2);
+  font-size: 2rem;
+  font-variation-settings: "wdth" 80, "wght" 400;
+}
