@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core'
 import { default as wordlist } from "../wordlist.js";
+
 export const useGameStore = defineStore('game', {
     state: () => ({
         /**
          * @type {string[]}
          * The five letter word to guess
          */
-        words: [],
+        words: useStorage('words', []),
 
         /**
          * @type {string}
@@ -18,20 +20,13 @@ export const useGameStore = defineStore('game', {
          * @type {string[]}
          * Array of guessed words
          */
-        guesses: [],
-
-        /**
-         * @type {number}
-         * The maximum number of guesses allowed
-         * Will vary on how many simulateous games are allowed
-         */
-        maxGuesses: 6,
+        guesses: useStorage('guesses', []),
 
         /**
          * @type {number}
          * The number of boards in play
          */
-        boards: 1,
+        boards: useStorage('boards', 1),
     }),
     getters: {
         guessedLetters: (state) => {
@@ -43,6 +38,7 @@ export const useGameStore = defineStore('game', {
                 !state.words.join('').includes(letter)),
         solved: (state) => state.words.every(word => state.guesses.includes(word)),
         invalidGuess: (state) => state.guess.length == 5 && wordlist.indexOf(state.guess.toUpperCase()) == -1,
+        maxGuesses: (state) => 5 + state.boards,
         remainingGuesses: (state) => state.maxGuesses - state.guesses.length,
         keyMarkers: (state) => {
             let keys = {};
@@ -100,7 +96,6 @@ export const useGameStore = defineStore('game', {
                     this.words.push(wordlist[Math.floor(Math.random() * wordlist.length)]);
                 }
             }
-            this.maxGuesses = 5 + this.boards;
         }
     },
 })

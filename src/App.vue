@@ -7,7 +7,7 @@ import Keyboard from "./components/Keyboard.vue";
 import { onMounted } from "vue";
 import LetterInput from "./components/LetterInput.vue";
 onMounted(() => {
-  game.startNewGame();
+  if (!game.words.length) game.startNewGame();
 });
 </script>
 

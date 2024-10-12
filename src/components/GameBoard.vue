@@ -52,7 +52,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  max-width: 20rem;
+  max-width: 24rem;
   container-type: inline-size;
 }
 .guesses {
