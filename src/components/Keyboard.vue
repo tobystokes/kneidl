@@ -6,7 +6,7 @@
           <button
             v-if="i == 2"
             @click="keyClick('⌫')"
-            :disabled="state.guess.length == 0"
+            :disabled="game.guess.length == 0"
             class="wide"
           >
             ⌫
@@ -14,7 +14,7 @@
           <button
             v-for="key in row"
             @click="keyClick(key)"
-            :disabled="incorrectLetters.includes(key)"
+            :disabled="game.incorrectLetters.includes(key)"
             :style="keystyle[key]"
           >
             {{ key }}
@@ -22,7 +22,7 @@
           <button
             v-if="i == 2"
             @click="keyClick('↵')"
-            :disabled="state.guess.length < 5"
+            :disabled="game.guess.length < 5"
             class="wide"
           >
             ↵
@@ -35,12 +35,12 @@
 
 <script setup>
 import { computed } from "vue";
-import { useGame } from "@/composables/useGame";
-const { state, keyMarkers, guessWord, incorrectLetters } = useGame();
+import { useGameStore } from "@/stores/game";
+const game = useGameStore();
 
 const keystyle = computed(() => {
   let keystyle = {};
-  for (const [key, arr] of Object.entries(keyMarkers.value)) {
+  for (const [key, arr] of Object.entries(game.keyMarkers)) {
     if (arr.length > 0) {
       if (arr.length == 1) {
         keystyle[key] = {
@@ -77,11 +77,11 @@ const rows = [
 ];
 const keyClick = (key) => {
   if (key === "⌫") {
-    state.guess = state.guess.slice(0, -1);
+    game.guess = game.guess.slice(0, -1);
   } else if (key === "↵") {
-    guessWord();
+    game.guessWord();
   } else {
-    state.guess += key;
+    game.guess += key;
   }
 };
 </script>

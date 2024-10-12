@@ -6,9 +6,9 @@
           v-for="(letter, i) in guess"
           :class="{
             letter: true,
-            warm: word?.includes(letter) && letter != word?.charAt(i),
-            right: letter == word[i],
-            solved: guess == word,
+            warm: board?.includes(letter) && letter != board?.charAt(i),
+            right: letter == board[i],
+            solved: guess == board,
           }"
           >{{ letter }}</span
         >
@@ -16,31 +16,30 @@
     </ul>
 
     <CurrentGuess
-      v-if="!state.guesses.includes(word) && remainingGuesses > 0"
+      v-if="!game.guesses.includes(board) && game.remainingGuesses > 0"
     />
-    <template v-if="remainingGuesses > 0">
-      <div class="remainingGuess" v-for="i in remainingGuesses - 1"></div>
+    <template v-if="game.remainingGuesses > 0">
+      <div class="remainingGuess" v-for="i in game.remainingGuesses - 1"></div>
     </template>
   </div>
 </template>
 
 <script setup>
-import { useGame } from "@/composables/useGame";
+import { useGameStore } from "@/stores/game";
 import { computed } from "vue";
-import CurrentGuess from "@/components/CurrentGuess.vue";
-const { state, remainingGuesses } = useGame();
+import CurrentGuess from "./CurrentGuess.vue";
+const game = useGameStore();
 
 const props = defineProps({
   boardIndex: Number,
 });
-const word = computed(() => state.words[props.boardIndex]);
+const board = computed(() => game.words[props.boardIndex]);
 
 const preGuesses = computed(() => {
-  if (!word.value) return [];
-  let solvedAfter = state.guesses.indexOf(word.value);
+  let solvedAfter = game.guesses.indexOf(board.value);
   return solvedAfter == -1
-    ? state.guesses
-    : state.guesses.slice(0, solvedAfter + 1);
+    ? game.guesses
+    : game.guesses.slice(0, solvedAfter + 1);
 });
 </script>
 
