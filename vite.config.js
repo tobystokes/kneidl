@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -9,6 +9,27 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    VitePWA({
+      registerType: 'autoUpdate', manifest: {
+        name: 'Kneidle',
+        short_name: 'Kneidle',
+        description: 'My Awesome App description',
+        display: "standalone",
+        theme_color: '#ff0099',
+        icons: [
+          {
+            src: 'favicon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'favicon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
   ],
   resolve: {
     alias: {

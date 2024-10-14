@@ -65,12 +65,16 @@ onMounted(() => {
   justify-content: center;
   margin: 1rem;
 }
+header {
+  height: var(--header-height);
+  background-color: var(--col-primary);
+  color: var(--col-bg-light);
+}
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--header-height);
-  background-color: var(--col-primary);
-  color: var(--col-bg-light);
+  padding: 1rem;
+  gap: 1rem;
 }
 </style>
