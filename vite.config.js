@@ -5,7 +5,9 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
+  base: mode === "development" ? "/" : "/kneidl/", //assuming deployed to github pages
+
   plugins: [
     vue(),
     vueDevTools(),
@@ -36,4 +38,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
-})
+}))
