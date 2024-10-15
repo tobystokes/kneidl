@@ -44,6 +44,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--col-text);
   background-color: var(--col-bg-light);
+  touch-action: manipulation;
 }
 
 ul,
@@ -72,4 +73,17 @@ textarea {
   font-size: 1rem;
   font-family: var(--t-ff);
   cursor: pointer;
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
 }

@@ -2,6 +2,7 @@
   <div class="keyboard-bg">
     <div class="keyboard-cq">
       <div class="keyboard">
+        <BoardSizer />
         <div class="row" v-for="(row, i) in rows">
           <button
             v-if="i == 2"
@@ -14,7 +15,7 @@
           <button
             v-for="key in row"
             @click="keyClick(key)"
-            :disabled="game.incorrectLetters.includes(key)"
+            :disabled="game.disabledLetters.includes(key)"
             :style="keystyle[key]"
           >
             {{ key }}
@@ -36,6 +37,7 @@
 <script setup>
 import { computed } from "vue";
 import { useGameStore } from "@/stores/game";
+import BoardSizer from "@/components/BoardSizer.vue";
 const game = useGameStore();
 
 const keystyle = computed(() => {
@@ -86,7 +88,7 @@ const keyClick = (key) => {
 };
 </script>
 
-<style scoped>
+<style>
 .keyboard-bg {
   position: fixed;
   bottom: 0;
@@ -95,6 +97,9 @@ const keyClick = (key) => {
   width: 100%;
   padding: 1rem;
   background-color: var(--col-bg);
+  /* stop Safari iOS zoom */
+  touch-action: none;
+  user-select: none;
 }
 .keyboard-cq {
   container-type: inline-size;
@@ -105,11 +110,11 @@ const keyClick = (key) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2cqi;
+  gap: 2.5cqi;
 }
 .keyboard .row {
   display: flex;
-  gap: 2cqi;
+  gap: 2.5cqi;
 }
 .keyboard button {
   position: relative;
@@ -118,9 +123,10 @@ const keyClick = (key) => {
   justify-content: center;
   align-items: center;
   width: 8cqi;
-  height: 10cqi;
+  height: 11cqi;
   font-size: 5cqi;
   line-height: 1;
+  padding: 0;
   padding-top: 0.33em;
   border: none;
   color: var(--col-primary);
@@ -130,7 +136,8 @@ const keyClick = (key) => {
   border-radius: 1.5cqi;
   cursor: pointer;
   text-transform: uppercase;
-  font-variation-settings: "wdth" 100, "wght" 500;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  font-variation-settings: "wdth" 90, "wght" 500;
 }
 .keyboard button:before {
   content: "";
@@ -141,16 +148,16 @@ const keyClick = (key) => {
   background-color: var(--col-bg-light);
   /* background: conic-gradient(red, green, red, green, red); */
   background: var(--keystyle, var(--col-bg-light));
-  box-shadow: 1cqi 1cqi 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5cqi 1cqi 0 rgba(0, 0, 0, 0.1);
 }
-.keyboard button:active:before {
+.keyboard button:not([disabled]):active:before {
   transform: translateY(0.5cqi);
-  box-shadow: 1cqi 0.5cqi 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5cqi 0.5cqi 0 rgba(0, 0, 0, 0.1);
 }
 .keyboard button.wide {
   width: 12cqi;
 }
-[disabled] {
+.keyboard button[disabled] {
   opacity: 0.5;
 }
 </style>

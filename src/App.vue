@@ -2,16 +2,7 @@
   <div class="screen">
     <header>
       <div class="container">
-        <button type="button" @click="game.startNewGame()">
-          Start New Game
-        </button>
-        <input
-          type="range"
-          v-model.number="game.boards"
-          @change="game.changeBoardSize()"
-          min="1"
-          max="6"
-        />
+        <h1>KNEIDLE</h1>
       </div>
     </header>
 
@@ -72,9 +63,15 @@ header {
 }
 header .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
   gap: 1rem;
+}
+header h1 {
+  font-size: 2.5em;
+  line-height: 1;
+  font-variation-settings: "wdth" 60, "wght" 800;
+  margin: 0;
 }
 </style>

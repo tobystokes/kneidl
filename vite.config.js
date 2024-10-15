@@ -7,7 +7,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
   base: mode === "development" ? "/" : "/kneidl/", //assuming deployed to github pages
-
+  build: {
+    emptyOutDir: true
+  },
   plugins: [
     vue(),
     vueDevTools(),

@@ -19,6 +19,9 @@ cd dist
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
 
+# emptyOutDir isn't removing the .git folder?
+rm -rf .git
+
 git init --initial-branch=main
 git checkout -b main
 git add -A
