@@ -8,9 +8,9 @@
             v-if="i == 2"
             @click="keyClick('⌫')"
             :disabled="game.guess.length == 0"
-            class="wide"
+            class="icon"
           >
-            ⌫
+            <IconDelete />
           </button>
           <button
             v-for="key in row"
@@ -24,9 +24,9 @@
             v-if="i == 2"
             @click="keyClick('↵')"
             :disabled="game.guess.length < 5"
-            class="wide"
+            class="icon"
           >
-            ↵
+            <IconEnter />
           </button>
         </div>
       </div>
@@ -38,6 +38,8 @@
 import { computed } from "vue";
 import { useGameStore } from "@/stores/game";
 import BoardSizer from "@/components/BoardSizer.vue";
+import IconDelete from "./IconDelete.vue";
+import IconEnter from "./IconEnter.vue";
 const game = useGameStore();
 
 const keystyle = computed(() => {
@@ -137,7 +139,7 @@ const keyClick = (key) => {
   cursor: pointer;
   text-transform: uppercase;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  font-variation-settings: "wdth" 90, "wght" 500;
+  font-variation-settings: "wdth" 90, "wght" 440;
 }
 .keyboard button:before {
   content: "";
@@ -154,10 +156,16 @@ const keyClick = (key) => {
   transform: translateY(0.5cqi);
   box-shadow: 0.5cqi 0.5cqi 0 rgba(0, 0, 0, 0.1);
 }
-.keyboard button.wide {
+.keyboard button.icon {
   width: 12cqi;
+  padding-top: 0;
 }
 .keyboard button[disabled] {
   opacity: 0.5;
+}
+.keyboard svg {
+  width: auto;
+  height: 1em;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
 }
 </style>

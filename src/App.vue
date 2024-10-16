@@ -55,7 +55,10 @@ onMounted(() => {
   gap: 1rem;
   justify-content: center;
   margin: 1rem;
+  /* something to allow scroll from under keyboard */
+  padding-bottom: 25vh;
 }
+
 header {
   height: var(--header-height);
   background-color: var(--col-primary);
