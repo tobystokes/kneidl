@@ -62,7 +62,7 @@ form {
 }
 .guesses .letter {
   /*wrong */
-  background-color: color-mix(in srgb, var(--col-primary) 75%, var(--col-bg));
+  background-color: var(--col-primary-50);
   color: white;
   font-variation-settings: "wdth" 200, "wght" 250;
   font-size: 7.5cqi;
@@ -78,7 +78,7 @@ form {
 }
 .guesses .solved {
   font-variation-settings: "wdth" 60, "wght" 600;
-  font-size: 200%;
+  font-size: 4em;
 }
 .guesses li {
   display: grid;
@@ -89,7 +89,7 @@ form {
 .remainingGuess {
   width: 100%;
   height: 2.5cqi;
-  background-color: var(--col-bg);
+  background-color: var(--col-primary-25);
   border-radius: 0.125em;
 }
 </style>

@@ -1,13 +1,14 @@
 :root {
   --col-bg-light: #daddd8;
-  --col-bg: #c0c5bc;
-  --col-primary: #5a6356;
+  --col-bg: #ffd680;
+  --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
+  --col-primary: #261e0e;
   --col-text: #1b2913;
   --col-text-reverse: #f5f5f5;
-  --col-right: #49a465;
-  --col-warm: #d7d760;
-  --col-cold: var(--col-bg-light);
-  --col-wrong: #ad2a83;
+  --col-right: #2f9d8f;
+  --col-warm: #ff4e27;
+  --col-primary-25: color-mix(in srgb, var(--col-primary) 25%, transparent);
+  --col-primary-50: color-mix(in srgb, var(--col-primary) 50%, var(--col-bg));
   --t-ff: "obviously-variable", sans-serif;
   --header-height: 4rem;
 }
@@ -43,7 +44,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--col-text);
-  background-color: var(--col-bg-light);
+  background-color: var(--col-bg);
   touch-action: manipulation;
 }
 

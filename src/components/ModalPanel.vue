@@ -16,11 +16,11 @@
   width: 100%;
   max-width: 48rem;
   margin-inline: auto;
-  background-color: var(--col-bg-light);
-  color: var(--col-text);
+  background-color: var(--col-bg);
+  color: var(--col-primary);
   padding: 2rem;
   z-index: 2;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1rem 1rem var(--col-primary-25);
 }
 
 .modal-bg {
@@ -31,7 +31,7 @@
   left: 0;
   width: 100vw;
   height: 100vw;
-  background-color: color-mix(in srgb, var(--col-text) 25%, transparent);
+  background-color: var(--col-primary-25);
 }
 
 .modal .close {

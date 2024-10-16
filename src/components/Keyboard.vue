@@ -99,6 +99,7 @@ const keyClick = (key) => {
   width: 100%;
   padding: 1rem;
   background-color: var(--col-bg);
+  border-top: 2px solid var(--col-primary);
   /* stop Safari iOS zoom */
   touch-action: none;
   user-select: none;
@@ -109,6 +110,8 @@ const keyClick = (key) => {
   margin: auto;
 }
 .keyboard {
+  --button-bg: var(--col-primary);
+  --col-cold: var(--button-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,14 +134,14 @@ const keyClick = (key) => {
   padding: 0;
   padding-top: 0.33em;
   border: none;
-  color: var(--col-primary);
-  background-color: var(--col-bg-light);
+  color: var(--col-bg);
+  background-color: var(--button-bg);
   background-clip: padding-box;
   border: solid transparent 0.75cqi;
   border-radius: 1.5cqi;
   cursor: pointer;
   text-transform: uppercase;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  /* text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); */
   font-variation-settings: "wdth" 90, "wght" 440;
 }
 .keyboard button:before {
@@ -147,25 +150,28 @@ const keyClick = (key) => {
   inset: -0.75cqi;
   border-radius: 1.5cqi;
   z-index: -1;
-  background-color: var(--col-bg-light);
+  background-color: var(--button-bg);
   /* background: conic-gradient(red, green, red, green, red); */
-  background: var(--keystyle, var(--col-bg-light));
-  box-shadow: 0.5cqi 1cqi 0 rgba(0, 0, 0, 0.1);
+  background: var(--keystyle, var(--button-bg));
+  box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
 .keyboard button:not([disabled]):active:before {
   transform: translateY(0.5cqi);
-  box-shadow: 0.5cqi 0.5cqi 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5cqi 0.5cqi 0 var(--col-primary-25);
 }
 .keyboard button.icon {
   width: 12cqi;
   padding-top: 0;
 }
 .keyboard button[disabled] {
-  opacity: 0.5;
+  /* opacity: 0.5; */
+  --button-bg: var(--col-primary-50);
+  --col-cold: var(--col-primary-50);
 }
 .keyboard svg {
   width: auto;
   height: 1em;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+  fill: currentColor;
+  /* filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5)); */
 }
 </style>

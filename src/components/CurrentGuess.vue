@@ -39,14 +39,14 @@ const game = useGameStore();
 .filled,
 .focussed {
   background-color: var(--col-primary);
-  color: var(--col-bg-light);
+  color: var(--col-bg);
 }
 .focussed:before {
   content: "";
   position: absolute;
   bottom: 0.25em;
   width: 66%;
-  border-bottom: 0.125em solid var(--col-bg-light);
+  border-bottom: 0.125em solid var(--col-bg);
   animation-name: blink;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -90,7 +90,6 @@ const game = useGameStore();
   50%,
   70% {
     transform: translateX(-0.25rem);
-    background-color: var(--col-wrong);
   }
 
   40%,

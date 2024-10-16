@@ -14,10 +14,9 @@
         :aria-valuemin="game.minBoards"
         :aria-valuemax="game.maxBoards"
       >
-        <div
-          v-for="i in game.maxBoards"
-          :class="{ isBoard: i <= game.boards }"
-        ></div>
+        <div v-for="i in game.maxBoards" :class="{ isBoard: i <= game.boards }">
+          {{ i }}
+        </div>
       </div>
       <button
         @click="game.changeBoardSize(1)"
@@ -55,19 +54,27 @@ const game = useGameStore();
 }
 .board-sizer .meter {
   display: flex;
-  padding: 1cqi;
+  padding: 1cqi 2cqi;
   gap: 0.5cqi;
-  background-color: var(--col-bg-light);
+  background-color: var(--col-primary);
   margin-inline: 0.5cqi;
-  box-shadow: 0.5cqi 1cqi 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
 .board-sizer .meter div {
-  width: 4cqi;
+  width: 2.5cqi;
   /* height: 1.5cqi; */
-  background-color: var(--col-bg);
+  color: var(--col-bg-50);
   border-radius: 0.5cqi;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10cqi;
+  line-height: 0;
+  padding-top: 0.25em;
+  font-variation-settings: "wdth" 60, "wght" 200;
 }
 .board-sizer .meter .isBoard {
-  background-color: var(--col-primary);
+  color: var(--col-bg);
+  font-variation-settings: "wdth" 60, "wght" 900;
 }
 </style>

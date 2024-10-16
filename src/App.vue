@@ -56,13 +56,13 @@ onMounted(() => {
   justify-content: center;
   margin: 1rem;
   /* something to allow scroll from under keyboard */
-  padding-bottom: 25vh;
+  padding-bottom: 75vh;
 }
 
 header {
   height: var(--header-height);
   background-color: var(--col-primary);
-  color: var(--col-bg-light);
+  color: var(--col-bg);
 }
 header .container {
   display: flex;

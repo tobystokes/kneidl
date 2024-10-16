@@ -4,15 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--col-bg);
+  background-color: var(--col-primary-50);
   /* aspect-ratio: 1; */
   padding-block: 0.2em;
   padding-top: 0.3em;
   padding-bottom: 0;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0.1em 0.1em 0
-    color-mix(in srgb, var(--col-text) 25%, transparent);
+  text-shadow: 0.1em 0.1em 0 var(--col-primary-25);
 }
 .letter:first-of-type {
   border-radius: 0.125em 0 0 0.125em;
@@ -23,11 +22,11 @@
 
 .button {
   background-color: var(--col-primary);
-  color: var(--col-bg-light);
+  color: var(--col-bg);
   padding: 1rem;
   border: 0;
   border-radius: 0.25rem;
-  box-shadow: 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0.25rem 0.25rem 0 var(--col-primary-25);
   font-size: 2rem;
   font-variation-settings: "wdth" 80, "wght" 400;
 }
