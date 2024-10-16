@@ -1,7 +1,7 @@
 <template>
   <div class="modal-bg"></div>
   <div class="modal">
-    <button class="close" type="button" aria-label="close">x</button>
+    <!-- <button class="close" type="button" aria-label="close">x</button> -->
     <slot></slot>
   </div>
 </template>

@@ -1,5 +1,11 @@
 <template>
   <div class="keyboard-bg">
+    <div
+      class="keyboard-overlay"
+      v-if="game.solved || game.remainingGuesses <= 0"
+    >
+      <button @click="game.startNewGame()" class="button">New game</button>
+    </div>
     <div class="keyboard-cq">
       <div class="keyboard">
         <BoardSizer />
@@ -173,5 +179,15 @@ const keyClick = (key) => {
   height: 1em;
   fill: currentColor;
   /* filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5)); */
+}
+
+.keyboard-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--col-bg-90);
+  z-index: 1;
 }
 </style>
