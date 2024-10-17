@@ -18,7 +18,8 @@ export default defineConfig(({ command, mode }) => ({
         short_name: 'Kneidle',
         description: 'My Awesome App description',
         display: "standalone",
-        theme_color: '#ff0099',
+        theme_color: '#261e0e',
+        background_color: "#ffd680",
         icons: [
           {
             src: 'favicon-192.png',
