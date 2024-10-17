@@ -44,10 +44,7 @@ const preGuesses = computed(() => {
 });
 </script>
 
-<style scoped>
-form {
-  display: flex;
-}
+<style>
 .board {
   display: flex;
   flex-direction: column;
@@ -63,7 +60,7 @@ form {
 .guesses .letter {
   /*wrong */
   background-color: var(--col-primary-50);
-  color: white;
+  color: var(--col-bg);
   font-variation-settings: "wdth" 200, "wght" 250;
   font-size: 7.5cqi;
 }

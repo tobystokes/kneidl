@@ -1,5 +1,5 @@
+/* Theme is based on four colours, plus some blends */
 :root {
-  --col-bg-light: #daddd8;
   --col-bg: #ffd680;
   --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
   --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
@@ -10,9 +10,16 @@
   --col-primary-50: color-mix(in srgb, var(--col-primary) 50%, var(--col-bg));
   --t-ff: "obviously-variable", sans-serif;
   --header-height: 4rem;
+  --gutter: 2.5vw;
 }
 
 @media (prefers-color-scheme: dark) {
+  :root {
+    --col-bg: #4b1d7a;
+    --col-primary: #8a90c6;
+    --col-right: #45ffae;
+    --col-warm: #c62997;
+  }
 }
 
 *,
@@ -85,4 +92,22 @@ fieldset {
   border: 0;
   padding: 0;
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-variation-settings: "wdth" 120, "wght" 350;
+}
+
+svg {
+  fill: currentColor;
 }

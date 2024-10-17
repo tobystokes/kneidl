@@ -5,7 +5,7 @@
         @click="game.changeBoardSize(-1)"
         :disabled="game.boards == game.minBoards ? true : undefined"
       >
-        -
+        <span class="u-caps">-</span>
       </button>
       <div
         class="meter"
@@ -14,7 +14,11 @@
         :aria-valuemin="game.minBoards"
         :aria-valuemax="game.maxBoards"
       >
-        <div v-for="i in game.maxBoards" :class="{ isBoard: i <= game.boards }">
+        <div
+          v-for="i in game.maxBoards"
+          :class="{ active: i <= game.boards }"
+          class="u-caps"
+        >
           {{ i }}
         </div>
       </div>
@@ -22,7 +26,7 @@
         @click="game.changeBoardSize(1)"
         :disabled="game.boards == game.maxBoards ? true : undefined"
       >
-        +
+        <span class="u-caps">+</span>
       </button>
     </fieldset>
   </div>
@@ -64,15 +68,10 @@ const game = useGameStore();
   width: 2.5cqi;
   color: var(--col-bg-50);
   border-radius: 0.5cqi;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 9.5cqi;
-  line-height: 0;
-  padding-top: 0.25em;
   font-variation-settings: "wdth" 60, "wght" 200;
 }
-.board-sizer .meter .isBoard {
+.board-sizer .meter .active {
   color: var(--col-bg);
   font-variation-settings: "wdth" 60, "wght" 900;
 }

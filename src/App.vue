@@ -8,14 +8,11 @@
 
     <main>
       <div class="container">
-        <LetterInput />
+        <LetterInput></LetterInput>
+        <GameOver v-if="game.solved || game.remainingGuesses <= 0" />
         <div class="game-grid">
           <GameBoard v-for="i in game.boards" :board-index="i - 1" />
         </div>
-        <WonPanel v-if="game.solved"></WonPanel>
-        <LostPanel
-          v-if="!game.solved && game.remainingGuesses <= 0"
-        ></LostPanel>
       </div>
     </main>
     <Keyboard />
@@ -27,8 +24,7 @@ import { useGameStore } from "@/stores/game";
 const game = useGameStore();
 import GameBoard from "@/components/GameBoard.vue";
 import Keyboard from "@/components/Keyboard.vue";
-import LostPanel from "@/components/LostPanel.vue";
-import WonPanel from "@/components/WonPanel.vue";
+import GameOver from "@/components/GameOver.vue";
 import { onMounted } from "vue";
 import LetterInput from "@/components/LetterInput.vue";
 onMounted(() => {
@@ -42,6 +38,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   margin: auto;
   /* position: static; */
@@ -52,13 +49,14 @@ onMounted(() => {
 .container {
   max-width: 48rem;
   margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 .game-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
   justify-content: center;
-  margin: 1rem;
+  margin-block: var(--gutter);
 }
 
 header {
@@ -80,7 +78,7 @@ header h1 {
   margin: 0;
 }
 main {
-  /* flex: 1; */
+  height: 100%;
   overflow-y: auto;
   /* touch-action: pan-y; */
   position: relative;

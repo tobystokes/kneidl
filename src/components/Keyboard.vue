@@ -1,11 +1,5 @@
 <template>
   <div class="keyboard-bg">
-    <div
-      class="keyboard-overlay"
-      v-if="game.solved || game.remainingGuesses <= 0"
-    >
-      <button @click="game.startNewGame()" class="button">New game</button>
-    </div>
     <div class="keyboard-cq">
       <div class="keyboard">
         <BoardSizer />
@@ -24,7 +18,7 @@
             :disabled="game.disabledLetters.includes(key)"
             :style="keystyle[key]"
           >
-            {{ key }}
+            <span class="u-caps">{{ key }}</span>
           </button>
           <button
             v-if="i == 2"
@@ -36,6 +30,13 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <div
+      class="keyboard-overlay"
+      v-if="game.solved || game.remainingGuesses <= 0"
+    >
+      <button @click="game.startNewGame()" class="button">New game</button>
     </div>
   </div>
 </template>
@@ -98,6 +99,7 @@ const keyClick = (key) => {
 
 <style>
 .keyboard-bg {
+  position: relative;
   flex-shrink: 0;
   background-color: var(--col-bg);
   border-top: 1px solid var(--col-primary);
@@ -129,9 +131,7 @@ const keyClick = (key) => {
   width: 8cqi;
   height: 10cqi;
   font-size: 5cqi;
-  line-height: 1;
   padding: 0;
-  padding-top: 0.33em;
   color: var(--col-bg);
   cursor: pointer;
   text-transform: uppercase;

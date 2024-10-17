@@ -1,5 +1,46 @@
 @import "./base.css";
 
+/* 
+from https://seek-oss.github.io/capsize/:
+but this doesn't appear to match actual font??
+{
+  familyName: "Obviously Variable",
+  fullName: "Obviously Variable",
+  postscriptName: "ObviouslyVar-CompTh",
+  capHeight: 750,
+  ascent: 1004,
+  descent: -128,
+  lineGap: 0,
+  unitsPerEm: 1000,
+  xHeight: 628,
+  xWidthAvg: 133,
+  subsets: {
+    latin: {
+      xWidthAvg: 133
+    },
+    thai: {
+      xWidthAvg: 727
+    }
+  }
+} */
+
+.u-caps {
+  line-height: 1cap;
+  /* outline: 1px lime solid; */
+}
+
+.u-caps::before {
+  content: "";
+  margin-bottom: 0.15em;
+  display: table;
+}
+
+.u-caps::after {
+  content: "";
+  margin-top: -0.15em;
+  display: table;
+}
+
 .letter {
   display: flex;
   justify-content: center;
@@ -11,7 +52,7 @@
   padding-bottom: 0;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0.1em 0.1em 0 var(--col-primary-25);
+  text-shadow: 0.1em 0.1em 0 color-mix(in srgb, currentColor 25%, transparent);
 }
 .letter:first-of-type {
   border-radius: 0.125em 0 0 0.125em;
@@ -26,7 +67,8 @@
   padding: 1rem;
   border: 0;
   border-radius: 0.25rem;
-  box-shadow: 0.25rem 0.25rem 0 var(--col-primary-25);
+  box-shadow: 0.25rem 0.25rem 0
+    color-mix(in srgb, currentColor 25%, transparent);
   font-size: 2rem;
   font-variation-settings: "wdth" 80, "wght" 700;
 }

@@ -18,35 +18,29 @@ import { useGameStore } from "@/stores/game";
 const game = useGameStore();
 </script>
 
-<style scoped>
+<style>
 .guess {
   display: grid;
   width: 100%;
   height: 20cqi;
   /* aspect-ratio: 5 / 1; */
   grid-template-columns: repeat(5, 1fr);
-  /* gap: 1px; */
-  /* perspective: 10rem; */
 }
-.letter {
+.guess .letter {
   font-size: 15cqi;
-  /* outline: var(--col-bg-light) solid 1px; */
   position: relative;
   transition: background-color 0.4s;
   min-width: 1rem;
 }
 
-.filled,
-.focussed {
+.guess .filled,
+.guess .focussed {
   background-color: var(--col-primary);
   color: var(--col-bg);
 }
-.focussed:before {
-  content: "";
-  position: absolute;
-  bottom: 0.25em;
-  width: 66%;
-  border-bottom: 0.125em solid var(--col-bg);
+.guess .focussed:before {
+  content: "_";
+  font-variation-settings: "wdth" 200;
   animation-name: blink;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -54,13 +48,10 @@ const game = useGameStore();
 }
 
 [data-invalid="true"] .letter {
-  /* border: 3px solid red; */
   animation-name: shake;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
   animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-}
-[data-invalid="true"] .letter {
 }
 
 @keyframes blink {

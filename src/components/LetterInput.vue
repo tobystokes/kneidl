@@ -1,9 +1,8 @@
 <template>
-  <form @submit.prevent="game.guessWord()">
-    <label for="letters" class="u-invisible">Enter a 5 letter word:</label>
+  <form @submit.prevent="game.guessWord()" class="u-invisible">
+    <label for="letters">Enter a 5 letter word:</label>
     <input
       type="text"
-      class="u-invisible"
       id="letters"
       v-model="game.guess"
       minlength="5"
@@ -11,7 +10,7 @@
       required
       autocorrect="off"
     />
-    <input type="submit" value="Submit" class="u-invisible" />
+    <input type="submit" value="Submit" />
   </form>
 </template>
 
@@ -37,4 +36,4 @@ useEventListener(document, "keyup", (event) => {
 });
 </script>
 
-<style scoped></style>
+<style></style>
