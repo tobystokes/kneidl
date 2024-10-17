@@ -62,7 +62,7 @@ const keystyle = computed(() => {
         .map((state, index) => {
           let angle = 360 / arr.length;
           if (index == 0) {
-            angle = angle * (index + 1) + "deg";
+            angle = angle + "deg";
           } else if (index == arr.length - 1) {
             angle = angle * index + "deg";
           } else {
@@ -73,7 +73,7 @@ const keystyle = computed(() => {
         })
         .join(",");
       keystyle[key] = {
-        "--keystyle": `conic-gradient(${angles})`,
+        "--keystyle": `conic-gradient(from -90deg, ${angles})`,
       };
     }
   }
@@ -103,9 +103,8 @@ const keyClick = (key) => {
   left: 0;
   right: 0;
   width: 100%;
-  padding: 1rem;
   background-color: var(--col-bg);
-  border-top: 2px solid var(--col-primary);
+  border-top: 1px solid var(--col-primary);
   /* stop Safari iOS zoom */
   touch-action: none;
   user-select: none;
@@ -121,11 +120,12 @@ const keyClick = (key) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5cqi;
+  gap: 1.5cqi;
+  padding: 2.5cqi;
 }
 .keyboard .row {
   display: flex;
-  gap: 2.5cqi;
+  gap: 1.5cqi;
 }
 .keyboard button {
   position: relative;
@@ -134,26 +134,22 @@ const keyClick = (key) => {
   justify-content: center;
   align-items: center;
   width: 8cqi;
-  height: 11cqi;
+  height: 10cqi;
   font-size: 5cqi;
   line-height: 1;
   padding: 0;
   padding-top: 0.33em;
-  border: none;
   color: var(--col-bg);
-  background-color: var(--button-bg);
-  background-clip: padding-box;
-  border: solid transparent 0.75cqi;
-  border-radius: 1.5cqi;
   cursor: pointer;
   text-transform: uppercase;
   /* text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); */
   font-variation-settings: "wdth" 90, "wght" 440;
+  z-index: 1;
 }
 .keyboard button:before {
   content: "";
   position: absolute;
-  inset: -0.75cqi;
+  inset: 0cqi;
   border-radius: 1.5cqi;
   z-index: -1;
   background-color: var(--button-bg);
@@ -161,8 +157,18 @@ const keyClick = (key) => {
   background: var(--keystyle, var(--button-bg));
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
-.keyboard button:not([disabled]):active:before {
+.keyboard button:after {
+  content: "";
+  position: absolute;
+  inset: 1.5cqi;
+  border-radius: 0.75cqi;
+  z-index: -1;
+  background-color: var(--button-bg);
+}
+.keyboard button:not([disabled]):active {
   transform: translateY(0.5cqi);
+}
+.keyboard button:not([disabled]):active:before {
   box-shadow: 0.5cqi 0.5cqi 0 var(--col-primary-25);
 }
 .keyboard button.icon {

@@ -62,13 +62,12 @@ const game = useGameStore();
 }
 .board-sizer .meter div {
   width: 2.5cqi;
-  /* height: 1.5cqi; */
   color: var(--col-bg-50);
   border-radius: 0.5cqi;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10cqi;
+  font-size: 9.5cqi;
   line-height: 0;
   padding-top: 0.25em;
   font-variation-settings: "wdth" 60, "wght" 200;
