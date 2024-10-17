@@ -1,9 +1,10 @@
 <template>
   <form @submit.prevent="game.guessWord()">
-    <label for="letter" class="u-invisible">Enter a letter:</label>
+    <label for="letters" class="u-invisible">Enter a 5 letter word:</label>
     <input
       type="text"
       class="u-invisible"
+      id="letters"
       v-model="game.guess"
       minlength="5"
       maxlength="5"

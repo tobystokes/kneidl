@@ -42,8 +42,12 @@ onMounted(() => {
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;
+  width: 100vw;
   margin: auto;
-  position: relative;
+  /* position: static; */
+  /* stop Safari iOS zoom */
+  touch-action: none;
+  user-select: none;
 }
 .container {
   max-width: 48rem;
@@ -55,8 +59,6 @@ onMounted(() => {
   gap: 1rem;
   justify-content: center;
   margin: 1rem;
-  /* something to allow scroll from under keyboard */
-  padding-bottom: 75vh;
 }
 
 header {
@@ -76,5 +78,11 @@ header h1 {
   line-height: 1;
   font-variation-settings: "wdth" 60, "wght" 800;
   margin: 0;
+}
+main {
+  /* flex: 1; */
+  overflow-y: auto;
+  /* touch-action: pan-y; */
+  position: relative;
 }
 </style>

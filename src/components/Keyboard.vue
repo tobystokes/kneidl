@@ -98,16 +98,9 @@ const keyClick = (key) => {
 
 <style>
 .keyboard-bg {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  flex-shrink: 0;
   background-color: var(--col-bg);
   border-top: 1px solid var(--col-primary);
-  /* stop Safari iOS zoom */
-  touch-action: none;
-  user-select: none;
 }
 .keyboard-cq {
   container-type: inline-size;
