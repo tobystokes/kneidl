@@ -1,13 +1,13 @@
 /* Theme is based on four colours, plus some blends */
 :root {
   --col-bg: #ffd680;
-  --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
-  --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
   --col-primary: #261e0e;
   --col-right: #2f9d8f;
   --col-warm: #ff4e27;
   --col-primary-25: color-mix(in srgb, var(--col-primary) 25%, transparent);
   --col-primary-50: color-mix(in srgb, var(--col-primary) 50%, var(--col-bg));
+  --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
+  --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
   --t-ff: "obviously-variable", sans-serif;
   --header-height: 4rem;
   --gutter: 2.5vw;
@@ -85,6 +85,7 @@ button {
   appearance: none;
   background-color: transparent;
   border: 0;
+  margin: 0;
   padding: 0;
 }
 

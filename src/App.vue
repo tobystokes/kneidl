@@ -1,34 +1,41 @@
 <template>
   <div class="screen">
-    <header>
-      <div class="container">
-        <h1>KNEIDLE</h1>
-      </div>
-    </header>
-
-    <main>
+    <HeaderBar />
+    <MenuPanel />
+    <main v-if="!routes.menuOpen">
       <div class="container">
         <LetterInput></LetterInput>
-        <GameOver v-if="game.solved || game.remainingGuesses <= 0" />
+        <GameOver v-if="game.gameOver" />
         <div class="game-grid">
           <GameBoard v-for="i in game.boards" :board-index="i - 1" />
         </div>
       </div>
     </main>
-    <Keyboard />
+    <Keyboard v-if="!routes.menuOpen" />
   </div>
 </template>
 
 <script setup>
+import { onMounted, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/game";
-const game = useGameStore();
+import { useRoutesStore } from "@/stores/routes";
 import GameBoard from "@/components/GameBoard.vue";
 import Keyboard from "@/components/Keyboard.vue";
 import GameOver from "@/components/GameOver.vue";
-import { onMounted } from "vue";
 import LetterInput from "@/components/LetterInput.vue";
+import HeaderBar from "@/components/HeaderBar.vue";
+import MenuPanel from "@/components/MenuPanel.vue";
+const game = useGameStore();
+const routes = useRoutesStore();
+const { gameOver } = storeToRefs(game);
+
 onMounted(() => {
   if (!game.words.length) game.startNewGame();
+});
+
+watch(gameOver, () => {
+  console.log("gameOver ref changed, do something!");
 });
 </script>
 
@@ -57,25 +64,6 @@ onMounted(() => {
   gap: 1rem;
   justify-content: center;
   margin-block: var(--gutter);
-}
-
-header {
-  height: var(--header-height);
-  background-color: var(--col-primary);
-  color: var(--col-bg);
-}
-header .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
-}
-header h1 {
-  font-size: 2.5em;
-  line-height: 1;
-  font-variation-settings: "wdth" 60, "wght" 800;
-  margin: 0;
 }
 main {
   height: 100%;
