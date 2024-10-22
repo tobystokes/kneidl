@@ -43,6 +43,9 @@ const tabs = {
 .menu-panel {
   color: var(--col-primary);
   background-color: var(--col-bg);
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
 }
 .menu-panel .tabs {
   display: flex;
@@ -55,6 +58,7 @@ const tabs = {
   justify-content: center;
   width: 100%;
   padding: var(--gutter);
+  color: var(--col-primary);
   padding-block: calc(var(--gutter) * 1.5);
   border-bottom: 1px solid var(--col-primary-50);
   font-size: 1.5em;

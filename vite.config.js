@@ -9,6 +9,9 @@ export default defineConfig(({ command, mode }) => ({
   build: {
     emptyOutDir: true
   },
+  server: {
+    port: 3131
+  },
   plugins: [
     vue(),
     VitePWA({

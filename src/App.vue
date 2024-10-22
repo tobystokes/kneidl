@@ -34,8 +34,8 @@ onMounted(() => {
   if (!game.words.length) game.startNewGame();
 });
 
-watch(gameOver, () => {
-  console.log("gameOver ref changed, do something!");
+watch(gameOver, (isGameOver) => {
+  if (!!isGameOver) game.saveStat();
 });
 </script>
 
@@ -53,11 +53,7 @@ watch(gameOver, () => {
   touch-action: none;
   user-select: none;
 }
-.container {
-  max-width: 48rem;
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));

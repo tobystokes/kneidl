@@ -1,6 +1,6 @@
 @import "./base.css";
 
-/* 
+/*
 from https://seek-oss.github.io/capsize/:
 but this doesn't appear to match actual font??
 {
@@ -52,13 +52,14 @@ but this doesn't appear to match actual font??
   padding-bottom: 0;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0.1em 0.1em 0 color-mix(in srgb, currentColor 25%, transparent);
+  text-shadow: var(--letter-shadow);
+  font-variation-settings: "wdth" 100, "wght" 450;
 }
 .letter:first-of-type {
-  border-radius: 0.125em 0 0 0.125em;
+  border-radius: 1cqi 0 0 1cqi;
 }
 .letter:last-of-type {
-  border-radius: 0 0.125em 0.125em 0;
+  border-radius: 0 1cqi 1cqi 0;
 }
 
 .button {
@@ -71,4 +72,14 @@ but this doesn't appear to match actual font??
     color-mix(in srgb, currentColor 25%, transparent);
   font-size: 2rem;
   font-variation-settings: "wdth" 80, "wght" 700;
+}
+.button.reverse {
+  background-color: var(--col-bg);
+  color: var(--col-primary);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }

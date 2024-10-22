@@ -8,7 +8,7 @@
         <span class="u-caps">-</span>
       </button>
       <div
-        class="meter"
+        class="board-meter"
         role="meter"
         :aria-valuenow="game.boards"
         :aria-valuemin="game.minBoards"
@@ -56,7 +56,7 @@ const game = useGameStore();
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.board-sizer .meter {
+.board-meter {
   display: flex;
   padding: 1cqi 2cqi;
   gap: 0.5cqi;
@@ -64,14 +64,14 @@ const game = useGameStore();
   margin-inline: 0.5cqi;
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
-.board-sizer .meter div {
+.board-meter div {
   width: 2.5cqi;
   color: var(--col-bg-50);
   border-radius: 0.5cqi;
   font-size: 9.5cqi;
   font-variation-settings: "wdth" 60, "wght" 200;
 }
-.board-sizer .meter .active {
+.board-meter .active {
   color: var(--col-bg);
   font-variation-settings: "wdth" 60, "wght" 900;
 }

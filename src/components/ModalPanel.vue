@@ -14,7 +14,7 @@
   top: var(--header-height);
   /* left: 0; */
   width: 100%;
-  max-width: 48rem;
+  max-width: var(--container-width);
   margin-inline: auto;
   background-color: var(--col-bg);
   color: var(--col-primary);

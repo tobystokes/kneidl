@@ -87,6 +87,6 @@ const preGuesses = computed(() => {
   width: 100%;
   height: 2.5cqi;
   background-color: var(--col-primary-25);
-  border-radius: 0.125em;
+  border-radius: 1cqi;
 }
 </style>

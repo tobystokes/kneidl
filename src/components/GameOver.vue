@@ -13,6 +13,15 @@
         </a>
       </li>
     </ul>
+    <button
+      class="button reverse"
+      @click="
+        routes.menuTab = 'stats';
+        routes.toggleMenu();
+      "
+    >
+      <span class="u-caps">Stats</span>
+    </button>
   </div>
 </template>
 
@@ -20,8 +29,9 @@
 import { computed } from "vue";
 import IconDictionary from "@/components/IconDictionary.vue";
 import { useGameStore } from "@/stores/game";
+import { useRoutesStore } from "@/stores/routes";
 const game = useGameStore();
-
+const routes = useRoutesStore();
 const props = defineProps({
   message: String,
 });
@@ -52,7 +62,7 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
   font-size: 3em;
   font-variation-settings: "wdth" 180, "wght" 600;
   line-height: 1;
-  text-shadow: 0.1em 0.1em 0 color-mix(in srgb, currentColor 25%, transparent);
+  text-shadow: var(--letter-shadow);
   margin-top: 0.5em;
 }
 .results {
@@ -70,7 +80,7 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
   letter-spacing: 0.1em;
 
   text-transform: uppercase;
-  text-shadow: 0.1em 0.1em 0 color-mix(in srgb, currentColor 25%, transparent);
+  text-shadow: var(--letter-shadow);
   border-radius: 0.125em;
 }
 

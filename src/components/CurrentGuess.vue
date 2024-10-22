@@ -31,6 +31,7 @@ const game = useGameStore();
   position: relative;
   transition: background-color 0.4s;
   min-width: 1rem;
+  text-shadow: var(--letter-shadow);
 }
 
 .guess .filled,

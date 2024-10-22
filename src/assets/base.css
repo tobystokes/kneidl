@@ -10,7 +10,10 @@
   --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
   --t-ff: "obviously-variable", sans-serif;
   --header-height: 4rem;
-  --gutter: 2.5vw;
+  --container-width: 48rem;
+  --gutter: min(2.5vw, var(--container-width) * 0.025);
+  --letter-shadow: 0.075em 0.075em 0
+    color-mix(in srgb, currentColor 25%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
