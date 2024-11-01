@@ -77,9 +77,3 @@ but this doesn't appear to match actual font??
   background-color: var(--col-bg);
   color: var(--col-primary);
 }
-
-.container {
-  max-width: var(--container-width);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}

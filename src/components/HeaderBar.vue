@@ -1,16 +1,14 @@
 <template>
   <header>
-    <div class="container">
-      <h1 class="u-caps">KNEIDLE</h1>
-      <button
-        class="menu-icon"
-        @click="routes.toggleMenu"
-        :aria-expanded="routes.menuOpen ? true : undefined"
-        aria-controls="menu-panel"
-      >
-        <component :is="menuIcon" />
-      </button>
-    </div>
+    <h1 class="u-caps">KNEIDLE</h1>
+    <button
+      class="menu-icon"
+      @click="routes.toggleMenu"
+      :aria-expanded="routes.menuOpen ? true : undefined"
+      aria-controls="menu-panel"
+    >
+      <component :is="menuIcon" />
+    </button>
   </header>
 </template>
 
@@ -34,15 +32,13 @@ header {
   background-color: var(--col-primary);
   color: var(--col-bg);
   flex-shrink: 0;
-}
-header .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   gap: 1rem;
   position: relative;
 }
+
 header h1 {
   font-size: 2.5em;
   line-height: 1;
