@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
-  base: mode === "development" ? "/" : "/kneidl/", //assuming deployed to github pages
+  // base: mode === "development" ? "/" : "/kneidl/", //assuming deployed to github pages
   build: {
     emptyOutDir: true
   },
