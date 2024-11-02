@@ -51,6 +51,8 @@ watch(gameOver, (isGameOver) => {
   user-select: none;
   background-color: var(--col-bg);
   box-shadow: 0 0 4rem 0 rgba(0, 0, 0, 0.2);
+  container-type: inline-size;
+  container-name: screen;
 }
 
 .game-grid {

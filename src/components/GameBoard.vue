@@ -1,7 +1,12 @@
 <template>
   <div class="board">
-    <ul aria-label="Previous guesses" class="guesses">
-      <li v-for="guess in preGuesses">
+    <TransitionGroup
+      aria-label="Previous guesses"
+      class="guesses"
+      name="guess"
+      tag="ul"
+    >
+      <li v-for="guess in preGuesses" :key="guess">
         <span
           v-for="(letter, i) in guess"
           :class="{
@@ -10,10 +15,11 @@
             right: letter == word[i],
             solved: guess == word,
           }"
+          :style="{ animationDelay: `${i * 0.1}s` }"
           >{{ letter }}</span
         >
       </li>
-    </ul>
+    </TransitionGroup>
 
     <CurrentGuess
       v-if="!game.guesses.includes(word) && game.remainingGuesses > 0"
@@ -88,5 +94,30 @@ const preGuesses = computed(() => {
   height: 2.5cqi;
   background-color: var(--col-primary-25);
   border-radius: 1cqi;
+}
+
+.guess-enter-active {
+  animation: parent 1s;
+}
+.guess-enter-active .letter {
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  animation: bounce-in 0.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* .guess-leave-active {
+  animation: bounce-in 0.5s reverse;
+} */
+@keyframes bounce-in {
+  0% {
+    transform: scaleY(0);
+  }
+  75% {
+    transform: scaleY(1.2);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 </style>

@@ -8,7 +8,7 @@
         focussed: i == game.guess.length + 1,
       }"
     >
-      {{ game.guess[i - 1] ?? " " }}
+      <span>{{ game.guess[i - 1] ?? " " }}</span>
     </div>
   </div>
 </template>
@@ -38,6 +38,14 @@ const game = useGameStore();
 .guess .focussed {
   background-color: var(--col-primary);
   color: var(--col-bg);
+}
+
+.guess .filled span {
+  animation-name: filled;
+  animation-duration: 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .guess .focussed:before {
   content: "_";
@@ -87,6 +95,15 @@ const game = useGameStore();
   40%,
   60% {
     transform: translateX(0.25rem);
+  }
+}
+
+@keyframes filled {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
   }
 }
 </style>

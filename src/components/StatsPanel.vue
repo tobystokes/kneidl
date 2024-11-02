@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="[key, count] in scoreOrder">
+        <tr v-for="[key, count] in scoreOrder" :data-row="key">
           <td>
             <span class="u-caps">{{ key == -1 ? "lost" : key }}</span>
           </td>
@@ -88,7 +88,7 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 .barchart {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.75em;
+  font-size: 0.8em;
   line-height: 1;
   font-variation-settings: "wdth" 100, "wght" 400;
 }
@@ -110,6 +110,10 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 .barchart .meter-cell {
   padding: 0;
 }
+.barchart [data-row="-1"] td {
+  border-top: 1rem transparent solid;
+}
+
 .meter {
   position: relative;
   width: 100%;
@@ -139,12 +143,12 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 .stat-blocks {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem;
-  margin-block: var(--gutter);
+  gap: var(--gutter);
+  margin-bottom: var(--gutter);
 }
 
 .stat-block {
-  padding: 1rem;
+  padding: var(--gutter);
   padding-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -155,14 +159,14 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 }
 
 .stat-block h3 {
-  font-size: 0.75em;
+  font-size: 0.75rem;
   line-height: 1;
   font-variation-settings: "wdth" 100, "wght" 400;
   letter-spacing: 0.03em;
 }
 
 .stat-block p {
-  font-size: 3.75rem;
+  font-size: 16cqi;
   font-variation-settings: "wdth" 60, "wght" 700;
   text-shadow: var(--letter-shadow);
 }
