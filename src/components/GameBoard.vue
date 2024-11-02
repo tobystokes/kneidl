@@ -81,7 +81,7 @@ const preGuesses = computed(() => {
 }
 .guesses .solved {
   font-variation-settings: "wdth" 60, "wght" 600;
-  font-size: 4em;
+  font-size: 22.5cqi;
 }
 .guesses li {
   display: grid;

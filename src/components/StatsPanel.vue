@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="gotStats">
     <div class="stat-blocks">
       <div class="stat-block">
         <h3>Games played</h3>
@@ -47,6 +47,10 @@
 import { computed } from "vue";
 import { useGameStore } from "@/stores/game";
 const game = useGameStore();
+
+const gotStats = computed(
+  () => game.stats && Object.keys(game.stats).length > 0
+);
 
 const totalGamesPlayed = computed(() =>
   Object.values(game.stats)
