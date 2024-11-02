@@ -2,7 +2,7 @@
   <div class="gameover">
     <h1 class="u-caps">{{ title }}</h1>
     <p>The words were:</p>
-    <ul class="results">
+    <ul class="results game-grid">
       <li v-for="word in game.words" class="word" :class="result(word)">
         <span class="u-caps">{{ word }}</span>
         <a
@@ -21,6 +21,9 @@
       "
     >
       <span class="u-caps">Stats</span>
+    </button>
+    <button @click="game.startNewGame()" class="button reverse">
+      <span class="u-caps">New game</span>
     </button>
   </div>
 </template>
@@ -52,7 +55,7 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
   color: var(--col-bg);
   padding: var(--gutter);
   border-radius: 0.5em;
-  margin-block: var(--gutter);
+  margin-bottom: var(--gutter);
   display: flex;
   flex-direction: column;
   gap: var(--gutter);
@@ -66,14 +69,13 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
   margin-top: 0.5em;
 }
 .results {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
+  width: 100%;
 }
 .word {
   display: inline-flex;
+  justify-content: center;
   font-variation-settings: "wdth" 60, "wght" 600;
-  font-size: 4em;
+  font-size: 3em;
   background-color: var(--col-primary-50);
   /* aspect-ratio: 1; */
   padding: 0.25em;

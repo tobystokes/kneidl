@@ -76,6 +76,8 @@ but this doesn't appear to match actual font??
 .button.reverse {
   background-color: var(--col-bg);
   color: var(--col-primary);
+  box-shadow: 0.25rem 0.25rem 0
+    color-mix(in srgb, var(--col-bg) 25%, transparent);
 }
 
 .prose * + * {

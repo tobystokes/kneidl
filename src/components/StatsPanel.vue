@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <table class="barchart">
+    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
       <thead>
         <tr>
           <th>Guesses remaining</th>
@@ -24,7 +24,14 @@
             <span class="u-caps">{{ key == -1 ? "lost" : key }}</span>
           </td>
           <td class="meter-cell">
-            <div class="meter" :style="{ '--meter-width': meterWidth(count) }">
+            <div
+              :class="{
+                meter: true,
+                'last-score':
+                  game.gameOver && game.solved && key == game.remainingGuesses,
+              }"
+              :style="{ '--meter-width': meterWidth(count) }"
+            >
               <span class="u-caps" :data-count="count || 0">{{
                 count || 0
               }}</span>
@@ -101,6 +108,7 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 .barchart th:first-child,
 .barchart td:first-child {
   text-align: right;
+  width: 25%;
 }
 .barchart th:last-child,
 .barchart td:last-child {
@@ -138,6 +146,19 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
 }
 .meter [data-count="0"] {
   color: var(--col-primary);
+}
+.meter.last-score:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(var(--meter-width) - var(--meter-unit));
+  width: var(--meter-unit);
+  height: 100%;
+  background-image: linear-gradient(
+    to right,
+    var(--col-primary) 0%,
+    var(--col-right) 100%
+  );
 }
 
 .stat-blocks {

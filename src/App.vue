@@ -9,7 +9,7 @@
         <GameBoard v-for="i in game.boards" :board-index="i - 1" />
       </div>
     </main>
-    <Keyboard v-if="!routes.menuOpen" />
+    <Keyboard v-if="!routes.menuOpen && !game.gameOver" />
   </div>
 </template>
 
@@ -46,6 +46,7 @@ watch(gameOver, (isGameOver) => {
   justify-content: flex-start;
   height: 100vh;
   min-height: 100vh;
+  overflow: hidden;
   /* stop Safari iOS zoom */
   touch-action: none;
   user-select: none;

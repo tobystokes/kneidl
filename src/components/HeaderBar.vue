@@ -37,6 +37,8 @@ header {
   align-items: center;
   gap: 1rem;
   position: relative;
+  box-shadow: 0 0 var(--gutter) var(--col-bg-50);
+  z-index: 1;
 }
 
 header h1 {

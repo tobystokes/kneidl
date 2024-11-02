@@ -31,6 +31,7 @@ useEventListener(document, "keyup", (event) => {
     game.guess = game.guess.slice(0, -1);
   }
   if (event.key === "Enter") {
+    event.preventDefault();
     game.guessWord();
   }
 });
