@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
+    "prebuild": "node ./wordlist.js random",
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "./deploy-to-gh-pages.sh"
