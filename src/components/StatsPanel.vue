@@ -147,7 +147,7 @@ const scoreRange = Array.from({ length: 7 }, (v, i) => i - 1).reverse();
 const scoreOrder = computed(() => {
   const sortedStats = new Map(); // numeric keys, using an object would sort them as strings
   scoreRange.forEach((key) => {
-    sortedStats.set(key, combinedStats.value[key]);
+    sortedStats.set(key, combinedStats.value[key] || 0);
   });
   return sortedStats;
 });
@@ -161,7 +161,6 @@ const averageGuessesRemainingPerBoardLength = computed(() => {
       (acc, [guess, val]) => acc + guess * val,
       0
     );
-    console.log({ key, totalGuesses, totalGames });
     averageStats.set(key, totalGuesses / totalGames);
   });
   return averageStats;
