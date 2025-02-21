@@ -28,3 +28,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+`npm prebuild` randomises the wordlist, but don't commit the changes - the repo version should be alphabetised so if we add words, we can see where...
+
+### Deploy
+
+It gets sent to Vercel automagically.
