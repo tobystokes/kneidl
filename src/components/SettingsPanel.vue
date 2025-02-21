@@ -1,5 +1,5 @@
 <template>
-  <div>Settings panel</div>
+  <div>There aren’t any settings yet.</div>
 </template>
 
 <script setup></script>

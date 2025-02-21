@@ -46,6 +46,9 @@ const tabs = {
   width: 100%;
   max-width: var(--container-width);
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .menu-panel .tabs {
   display: flex;
@@ -70,5 +73,6 @@ const tabs = {
 
 .tabpanel {
   padding: var(--gutter);
+  overflow: auto;
 }
 </style>
