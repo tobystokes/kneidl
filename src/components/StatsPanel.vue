@@ -30,7 +30,12 @@
                 'last-score':
                   game.gameOver && game.solved && key == game.remainingGuesses,
               }"
-              :style="{ '--meter-width': meterWidth(count) }"
+              :style="{
+                '--meter-width': meterWidth(
+                  count,
+                  Math.max(...scoreOrder.values())
+                ),
+              }"
             >
               <span class="u-caps" :data-count="count || 0">{{
                 count || 0
@@ -54,7 +59,15 @@
             <span class="u-caps">{{ key }}</span>
           </td>
           <td class="meter-cell">
-            <div class="meter" :style="{ '--meter-width': meterWidth(count) }">
+            <div
+              class="meter"
+              :style="{
+                '--meter-width': meterWidth(
+                  count,
+                  Math.max(...gamesPlayedPerBoard.values())
+                ),
+              }"
+            >
               <span class="u-caps">{{ count }}</span>
             </div>
           </td>
@@ -154,11 +167,7 @@ const averageGuessesRemainingPerBoardLength = computed(() => {
   return averageStats;
 });
 
-const longestBar = computed(() => {
-  const max = Math.max(...Object.values(combinedStats.value));
-  return max;
-});
-const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
+const meterWidth = (count = 0, max = 1) => `${(count / max) * 100}%`;
 </script>
 
 <style>
