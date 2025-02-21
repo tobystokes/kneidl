@@ -225,11 +225,12 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
   left: calc(var(--meter-width) - var(--meter-unit));
   width: var(--meter-unit);
   height: 100%;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     var(--col-primary) 0%,
     var(--col-right) 100%
-  );
+  ); */
+  background-color: var(--col-right);
 }
 
 .stat-blocks {
