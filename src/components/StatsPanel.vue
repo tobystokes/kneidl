@@ -40,6 +40,46 @@
         </tr>
       </tbody>
     </table>
+
+    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
+      <thead>
+        <tr>
+          <th>Board length</th>
+          <th>Games played</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="[key, count] in gamesPlayedPerBoard">
+          <td>
+            <span class="u-caps">{{ key }}</span>
+          </td>
+          <td class="meter-cell">
+            <div class="meter" :style="{ '--meter-width': meterWidth(count) }">
+              <span class="u-caps">{{ count }}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
+      <thead>
+        <tr>
+          <th>Board length</th>
+          <th>Avg. guesses remaining</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="[key, count] in averageGuessesRemainingPerBoardLength">
+          <td>
+            <span class="u-caps">{{ key }}</span>
+          </td>
+          <td>
+            <span class="u-caps">{{ count.toFixed(2) }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -57,6 +97,17 @@ const totalGamesPlayed = computed(() =>
     .flatMap((boardLength) => Object.values(boardLength))
     .reduce((acc, val) => acc + val)
 );
+
+const gamesPlayedPerBoard = computed(() => {
+  const gamesPlayed = new Map();
+  Object.entries(game.stats).forEach(([key, val]) => {
+    gamesPlayed.set(
+      key,
+      Object.values(val).reduce((acc, val) => acc + val)
+    );
+  });
+  return gamesPlayed;
+});
 
 const totalWinRate = computed(() => {
   const losses = Object.values(game.stats)
@@ -88,6 +139,21 @@ const scoreOrder = computed(() => {
   return sortedStats;
 });
 
+const averageGuessesRemainingPerBoardLength = computed(() => {
+  const averageStats = new Map();
+  Object.entries(game.stats).forEach(([key, val]) => {
+    const filteredStats = Object.entries(val).filter(([guess]) => guess != -1);
+    const totalGames = filteredStats.reduce((acc, [, val]) => acc + val, 0);
+    const totalGuesses = filteredStats.reduce(
+      (acc, [guess, val]) => acc + guess * val,
+      0
+    );
+    console.log({ key, totalGuesses, totalGames });
+    averageStats.set(key, totalGuesses / totalGames);
+  });
+  return averageStats;
+});
+
 const longestBar = computed(() => {
   const max = Math.max(...Object.values(combinedStats.value));
   return max;
@@ -102,6 +168,7 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
   font-size: 0.8em;
   line-height: 1;
   font-variation-settings: "wdth" 100, "wght" 400;
+  margin-bottom: var(--gutter);
 }
 .barchart th,
 .barchart td {
@@ -123,7 +190,7 @@ const meterWidth = (count) => `${((count ?? 0) / longestBar.value) * 100}%`;
   padding: 0;
 }
 .barchart [data-row="-1"] td {
-  border-top: 1rem transparent solid;
+  border-top: 0.25rem transparent solid;
 }
 
 .meter {
