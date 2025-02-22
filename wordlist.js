@@ -4,8 +4,9 @@ import { readFileSync, writeFileSync } from 'fs';
 const args = process.argv.slice(2);
 const option = args[0];
 
-const filePath = './src/wordlist.js';
-let fileContent = readFileSync(filePath, 'utf-8');
+const fileIn = './src/wordlist.js';
+const fileOut = './src/wordlist-random.js';
+let fileContent = readFileSync(fileIn, 'utf-8');
 
 // Extract the array from the file content
 const arrayStart = fileContent.indexOf('[');
@@ -28,4 +29,4 @@ if (option === 'random') {
 
 const newArrayContent = JSON.stringify(wordArray);
 const updatedFileContent = fileContent.slice(0, arrayStart) + newArrayContent;
-writeFileSync(filePath, updatedFileContent, 'utf-8');
+writeFileSync(fileOut, updatedFileContent, 'utf-8');

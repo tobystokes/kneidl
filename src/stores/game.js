@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core'
-import { default as wordlist } from "../wordlist.js";
+import { default as wordlist } from "../wordlist-random.js";
 
 export const useGameStore = defineStore('game', {
   state: () => ({
