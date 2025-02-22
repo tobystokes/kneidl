@@ -21,6 +21,13 @@
       Is this inspired by the qualities of a certian variable font?
       <a href="https://ohnotype.co/fonts/obviously" target="ohno">Obviously</a>.
     </p>
+
+    <h3>What?</h3>
+    <p>
+      This is just for <a href="https://tobystokes.uk/">me</a> to play with,
+      it's not finished. But if you find it and have thoughts,
+      <a href="https://github.com/tobystokes/kneidl/issues">lmk</a>
+    </p>
   </div>
 </template>
 
