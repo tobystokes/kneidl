@@ -11,7 +11,12 @@
       </div>
     </div>
 
-    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
+    <table
+      class="barchart"
+      :style="{
+        '--meter-unit': meterWidth(1, Math.max(...scoreOrder.values())),
+      }"
+    >
       <thead>
         <tr>
           <th>Guesses remaining</th>
@@ -46,7 +51,15 @@
       </tbody>
     </table>
 
-    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
+    <table
+      class="barchart"
+      :style="{
+        '--meter-unit': meterWidth(
+          1,
+          Math.max(...gamesPlayedPerBoard.values())
+        ),
+      }"
+    >
       <thead>
         <tr>
           <th>Board length</th>
@@ -60,7 +73,11 @@
           </td>
           <td class="meter-cell">
             <div
-              class="meter"
+              :class="{
+                meter: true,
+                'last-score':
+                  game.gameOver && game.solved && key == game.boards,
+              }"
               :style="{
                 '--meter-width': meterWidth(
                   count,
@@ -75,7 +92,7 @@
       </tbody>
     </table>
 
-    <table class="barchart" :style="{ '--meter-unit': meterWidth(1) }">
+    <table class="barchart">
       <thead>
         <tr>
           <th>Board length</th>
@@ -233,11 +250,6 @@ const meterWidth = (count = 0, max = 1) => `${(count / max) * 100}%`;
   left: calc(var(--meter-width) - var(--meter-unit));
   width: var(--meter-unit);
   height: 100%;
-  /* background-image: linear-gradient(
-    to right,
-    var(--col-primary) 0%,
-    var(--col-right) 100%
-  ); */
   background-color: var(--col-right);
 }
 
