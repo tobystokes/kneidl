@@ -2,27 +2,28 @@
 
 /*
 from https://seek-oss.github.io/capsize/:
-but this doesn't appear to match actual font??
 {
-  familyName: "Obviously Variable",
-  fullName: "Obviously Variable",
-  postscriptName: "ObviouslyVar-CompTh",
+  familyName: "HEX Franklin v0.3 Variable",
+  fullName: "HEX Franklin v0.3 Variable Regular",
+  postscriptName: "HEXFranklin0.3Variable-Regular",
   capHeight: 750,
-  ascent: 1004,
-  descent: -128,
+  ascent: 950,
+  descent: -200,
   lineGap: 0,
   unitsPerEm: 1000,
-  xHeight: 628,
-  xWidthAvg: 133,
+  xHeight: 560,
+  xWidthAvg: 476,
   subsets: {
     latin: {
-      xWidthAvg: 133
+      xWidthAvg: 476
     },
     thai: {
-      xWidthAvg: 727
+      xWidthAvg: 740
     }
   }
-} */
+}
+
+*/
 
 .u-caps {
   line-height: 1cap;
@@ -31,13 +32,13 @@ but this doesn't appear to match actual font??
 
 .u-caps::before {
   content: "";
-  margin-bottom: 0.15em;
+  margin-bottom: 0.05em;
   display: table;
 }
 
 .u-caps::after {
   content: "";
-  margin-top: -0.15em;
+  margin-top: -0.05em;
   display: table;
 }
 
@@ -47,9 +48,7 @@ but this doesn't appear to match actual font??
   align-items: center;
   background-color: var(--col-primary-50);
   /* aspect-ratio: 1; */
-  padding-block: 0.2em;
-  padding-top: 0.3em;
-  padding-bottom: 0;
+  padding: 0.25em;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: var(--letter-shadow);

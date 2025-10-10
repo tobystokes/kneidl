@@ -65,11 +65,10 @@ const game = useGameStore();
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
 .board-meter div {
-  width: 2.5cqi;
   color: var(--col-bg-50);
   border-radius: 0.5cqi;
   font-size: 9.5cqi;
-  font-variation-settings: "wdth" 60, "wght" 200;
+  font-variation-settings: "wdth" 60, "wght" 400;
 }
 .board-meter .active {
   color: var(--col-bg);

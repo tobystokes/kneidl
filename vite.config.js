@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => ({
       manifest: {
         name: 'Kneidle',
         short_name: 'Kneidle',
-        description: 'My Awesome App description',
+        description: 'Word guessy thing',
         display: "standalone",
         theme_color: '#261e0e',
         background_color: "#ffd680",

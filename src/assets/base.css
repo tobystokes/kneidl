@@ -1,3 +1,10 @@
+@font-face {
+  src: url("/fonts/HEX_Franklin_v0.3_Variable.woff2") format("woff2");
+  font-family: "HEX Franklin Variable";
+  font-weight: 1 1000;
+  font-style: normal;
+}
+
 /* Theme is based on four colours, plus some blends */
 :root {
   --col-bg: #ffd680;
@@ -8,7 +15,7 @@
   --col-primary-50: color-mix(in srgb, var(--col-primary) 50%, var(--col-bg));
   --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
   --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
-  --t-ff: "obviously-variable", sans-serif;
+  --t-ff: "HEX Franklin Variable", sans-serif;
   --header-height: 4rem;
   --container-width: 48rem;
   --gutter: min(2.5vw, var(--container-width) * 0.025);
