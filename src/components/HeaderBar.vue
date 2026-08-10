@@ -22,7 +22,7 @@ import IconOpenMenu from "@/components/IconOpenMenu.vue";
 const routes = useRoutesStore();
 
 const menuIcon = computed(() =>
-  routes.menuOpen ? IconCloseMenu : IconOpenMenu
+  routes.menuOpen ? IconCloseMenu : IconOpenMenu,
 );
 </script>
 
@@ -39,18 +39,21 @@ header {
   position: relative;
   box-shadow: 0 0 var(--gutter) var(--col-bg-50);
   z-index: 1;
+  padding-block-start: env(safe-area-inset-top);
 }
 
 header h1 {
   font-size: 2.5em;
   line-height: 1;
-  font-variation-settings: "wdth" 60, "wght" 800;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 800;
   margin: 0;
 }
 .menu-icon {
   position: absolute;
   right: 0;
-  top: 0;
+  top: env(safe-area-inset-top, 0);
   bottom: 0;
   width: var(--header-height);
   height: var(--header-height);

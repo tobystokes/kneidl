@@ -110,6 +110,7 @@ const keyClick = (key) => {
   align-items: center;
   gap: 1.5cqi;
   padding: 2.5cqi;
+  padding-block-end: max(env(safe-area-inset-bottom), 2.5cqi);
 }
 .keyboard .row {
   display: flex;
@@ -129,7 +130,9 @@ const keyClick = (key) => {
   cursor: pointer;
   text-transform: uppercase;
   /* text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); */
-  font-variation-settings: "wdth" 90, "wght" 440;
+  font-variation-settings:
+    "wdth" 90,
+    "wght" 440;
   z-index: 1;
 }
 .keyboard button:before {

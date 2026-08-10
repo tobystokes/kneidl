@@ -16,7 +16,7 @@
   --col-bg-50: color-mix(in srgb, var(--col-bg) 50%, transparent);
   --col-bg-90: color-mix(in srgb, var(--col-bg) 90%, transparent);
   --t-ff: "HEX Franklin Variable", sans-serif;
-  --header-height: 4rem;
+  --header-height: calc(4rem + env(safe-area-inset-top, 0rem));
   --container-width: 48rem;
   --gutter: min(2.5vw, var(--container-width) * 0.025);
   --letter-shadow: 0.075em 0.075em 0
@@ -55,10 +55,14 @@
 body {
   min-height: 100vh;
   font-family: var(--t-ff);
-  font-variation-settings: "ital" 0, "wdth" 100, "wght" 400;
+  font-variation-settings:
+    "ital" 0,
+    "wdth" 100,
+    "wght" 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--col-bg);
 }
 
 ul,
@@ -114,7 +118,9 @@ h6 {
 }
 
 p {
-  font-variation-settings: "wdth" 120, "wght" 350;
+  font-variation-settings:
+    "wdth" 120,
+    "wght" 350;
 }
 
 svg {
