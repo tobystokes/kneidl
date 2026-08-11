@@ -42,5 +42,11 @@ export default defineConfig(({ command, mode }) => ({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  define: {
+    __VERCEL_GIT_COMMIT_SHA__: JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA ?? 'COMMIT_#'),
+    __VERCEL_GIT_COMMIT_MESSAGE__: JSON.stringify(process.env.VERCEL_GIT_COMMIT_MESSAGE ?? 'VERCEL_GIT_COMMIT_MESSAGE'),
+    __VERCEL_GIT_COMMIT_REF__: JSON.stringify(process.env.VERCEL_GIT_COMMIT_REF ?? 'VERCEL_GIT_COMMIT_REF'),
+    __VERCEL_ENV__: JSON.stringify(process.env.VERCEL_ENV ?? 'development'),
+  },
 }))
