@@ -39,7 +39,7 @@ header {
   position: relative;
   box-shadow: 0 0 var(--gutter) var(--col-bg-50);
   z-index: 1;
-  padding-block-start: env(safe-area-inset-top);
+  padding-block-start: env(safe-area-inset-top, 0);
 }
 
 header h1 {
