@@ -63,7 +63,9 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
 }
 .gameover h1 {
   font-size: 3em;
-  font-variation-settings: "wdth" 180, "wght" 600;
+  font-variation-settings:
+    "wdth" 180,
+    "wght" 600;
   line-height: 1;
   text-shadow: var(--letter-shadow);
   margin-top: 0.5em;
@@ -74,7 +76,9 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
 .word {
   display: inline-flex;
   justify-content: center;
-  font-variation-settings: "wdth" 60, "wght" 600;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 600;
   font-size: 3em;
   background-color: var(--col-primary-50);
   /* aspect-ratio: 1; */
@@ -93,6 +97,10 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
 .word.unsolved {
   color: var(--col-bg);
   background-color: var(--col-warm);
+}
+.word .u-caps {
+  position: relative;
+  top: -0.05em;
 }
 .word a {
   display: inline-flex;

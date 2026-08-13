@@ -53,10 +53,9 @@ header h1 {
 .menu-icon {
   position: absolute;
   right: 0;
-  top: env(safe-area-inset-top, 0);
   bottom: 0;
-  width: var(--header-height);
-  height: var(--header-height);
+  width: 4rem;
+  height: 4rem;
   display: flex;
   color: var(--col-bg);
 }
@@ -69,7 +68,7 @@ header h1 {
 }
 .menu-icon svg {
   aspect-ratio: 1;
-  width: var(--header-height);
-  height: var(--header-height);
+  width: 4rem;
+  height: 4rem;
 }
 </style>

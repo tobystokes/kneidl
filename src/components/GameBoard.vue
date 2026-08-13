@@ -67,25 +67,32 @@ const preGuesses = computed(() => {
   /*wrong */
   background-color: var(--col-primary-50);
   color: var(--col-bg);
-  font-variation-settings: "wdth" 200, "wght" 250;
+  font-variation-settings:
+    "wdth" 200,
+    "wght" 250;
   font-size: 7.5cqi;
 }
 .guesses .right {
   background-color: var(--col-right);
-  font-variation-settings: "wdth" 200, "wght" 600;
+  font-variation-settings:
+    "wdth" 200,
+    "wght" 600;
 }
 .guesses .warm {
   /* Right Letter, Wrong Place */
   background-color: var(--col-warm);
-  font-variation-settings: "wdth" 200, "wght" 600;
+  font-variation-settings:
+    "wdth" 200,
+    "wght" 600;
 }
 .guesses .solved {
-  font-variation-settings: "wdth" 60, "wght" 600;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 600;
   font-size: 22.5cqi;
 }
 .guesses li {
   display: grid;
-  /* gap: 1px; */
   grid-template-columns: repeat(5, 1fr);
   /* perspective: 10rem; */
 }

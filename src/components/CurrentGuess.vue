@@ -25,6 +25,7 @@ const game = useGameStore();
   height: 20cqi;
   /* aspect-ratio: 5 / 1; */
   grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 0.25rem;
 }
 .guess .letter {
   font-size: 15cqi;
