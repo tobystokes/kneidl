@@ -93,7 +93,7 @@ const keyClick = (key) => {
 };
 </script>
 
-<style lang="scss">
+<style>
 .keyboard-bg {
   position: relative;
   flex-shrink: 0;
@@ -121,7 +121,7 @@ const keyClick = (key) => {
 }
 .keyboard button,
 .keyboard button:after {
-  touch-action: manipulation; // avoids 300ms delay on touch devices
+  touch-action: manipulation; /* avoids 300ms delay on touch devices */
   position: relative;
   flex-shrink: 0;
   display: flex;
@@ -144,25 +144,23 @@ const keyClick = (key) => {
   z-index: 1;
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
-.keymarkers {
-  &:before {
-    content: "";
-    position: absolute;
-    inset: 0cqi;
-    border-radius: 1.5cqi;
-    z-index: -1;
-    background-color: var(--button-bg);
-    /* background: conic-gradient(red, green, red, green, red); */
-    background: var(--keystyle, var(--button-bg));
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    inset: 1.5cqi;
-    border-radius: 0.75cqi;
-    z-index: -1;
-    background-color: var(--button-bg);
-  }
+.keymarkers:before {
+  content: "";
+  position: absolute;
+  inset: 0cqi;
+  border-radius: 1.5cqi;
+  z-index: -1;
+  background-color: var(--button-bg);
+  /* background: conic-gradient(red, green, red, green, red); */
+  background: var(--keystyle, var(--button-bg));
+}
+.keymarkers:after {
+  content: "";
+  position: absolute;
+  inset: 1.5cqi;
+  border-radius: 0.75cqi;
+  z-index: -1;
+  background-color: var(--button-bg);
 }
 
 .keyboard button[data-key]:active:after {
