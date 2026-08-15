@@ -17,8 +17,11 @@
             @click="keyClick(key)"
             :disabled="game.disabledLetters.includes(key)"
             :style="keystyle[key]"
+            :data-key="key"
           >
-            <span class="u-caps">{{ key }}</span>
+            <span class="keymarkers"
+              ><span class="u-caps">{{ key }}</span></span
+            >
           </button>
           <button
             v-if="i == 2"
@@ -84,7 +87,7 @@ const keyClick = (key) => {
     game.guess = game.guess.slice(0, -1);
   } else if (key === "↵") {
     game.guessWord();
-  } else {
+  } else if (game.guess.length < 5) {
     game.guess += key;
   }
 };
@@ -110,13 +113,14 @@ const keyClick = (key) => {
   align-items: center;
   gap: 1.5cqi;
   padding: 2.5cqi;
-  padding-block-end: max(env(safe-area-inset-bottom, 0), 2.5cqi);
+  padding-block-end: calc(env(safe-area-inset-bottom, 0) + 2.5cqi);
 }
 .keyboard .row {
   display: flex;
   gap: 1.5cqi;
 }
-.keyboard button {
+.keyboard button,
+.keyboard button:after {
   position: relative;
   flex-shrink: 0;
   display: flex;
@@ -129,31 +133,48 @@ const keyClick = (key) => {
   color: var(--col-bg);
   cursor: pointer;
   text-transform: uppercase;
-  /* text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); */
+  background-color: var(--button-bg);
+  border-radius: 1.5cqi;
+
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   font-variation-settings:
     "wdth" 90,
     "wght" 440;
   z-index: 1;
-}
-.keyboard button:before {
-  content: "";
-  position: absolute;
-  inset: 0cqi;
-  border-radius: 1.5cqi;
-  z-index: -1;
-  background-color: var(--button-bg);
-  /* background: conic-gradient(red, green, red, green, red); */
-  background: var(--keystyle, var(--button-bg));
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }
-.keyboard button:after {
-  content: "";
-  position: absolute;
-  inset: 1.5cqi;
-  border-radius: 0.75cqi;
-  z-index: -1;
-  background-color: var(--button-bg);
+.keymarkers {
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0cqi;
+    border-radius: 1.5cqi;
+    z-index: -1;
+    background-color: var(--button-bg);
+    /* background: conic-gradient(red, green, red, green, red); */
+    background: var(--keystyle, var(--button-bg));
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 1.5cqi;
+    border-radius: 0.75cqi;
+    z-index: -1;
+    background-color: var(--button-bg);
+  }
 }
+
+.keyboard button[data-key]:active:after {
+  content: attr(data-key);
+  opacity: 0.9;
+  position: absolute;
+  bottom: 100%;
+  background-color: var(--button-bg);
+  border-radius: 1.5cqi;
+  transform: scale(1.5);
+  transform-origin: center bottom;
+}
+
 .keyboard button:not([disabled]):active {
   transform: translateY(0.5cqi);
 }

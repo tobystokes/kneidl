@@ -48,11 +48,11 @@ const game = useGameStore();
   background-color: var(--col-bg);
   font-size: 2vw;
 }
-.board-sizer button:first-of-type:before {
+.board-sizer button:first-of-type {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.board-sizer button:last-of-type:before {
+.board-sizer button:last-of-type {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -68,10 +68,14 @@ const game = useGameStore();
   color: var(--col-bg-50);
   border-radius: 0.5cqi;
   font-size: 9.5cqi;
-  font-variation-settings: "wdth" 60, "wght" 400;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 400;
 }
 .board-meter .active {
   color: var(--col-bg);
-  font-variation-settings: "wdth" 60, "wght" 900;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 900;
 }
 </style>
