@@ -121,7 +121,7 @@ const keyClick = (key) => {
 }
 .keyboard button,
 .keyboard button:after {
-  touch-action: manipulation; /* avoids 300ms delay on touch devices */
+  touch-action: manipulation;
   position: relative;
   flex-shrink: 0;
   display: flex;

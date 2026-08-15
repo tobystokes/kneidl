@@ -7,6 +7,8 @@ import App from './App.vue'
 import { registerSW } from 'virtual:pwa-register'
 registerSW({ immediate: true })
 
+document.addEventListener('touchstart', () => { }, { passive: true });
+
 const app = createApp(App)
 
 app.use(createPinia())
