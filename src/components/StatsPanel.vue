@@ -38,7 +38,7 @@
               :style="{
                 '--meter-width': meterWidth(
                   count,
-                  Math.max(...scoreOrder.values())
+                  Math.max(...scoreOrder.values()),
                 ),
               }"
             >
@@ -56,7 +56,7 @@
       :style="{
         '--meter-unit': meterWidth(
           1,
-          Math.max(...gamesPlayedPerBoard.values())
+          Math.max(...gamesPlayedPerBoard.values()),
         ),
       }"
     >
@@ -81,7 +81,7 @@
               :style="{
                 '--meter-width': meterWidth(
                   count,
-                  Math.max(...gamesPlayedPerBoard.values())
+                  Math.max(...gamesPlayedPerBoard.values()),
                 ),
               }"
             >
@@ -92,7 +92,15 @@
       </tbody>
     </table>
 
-    <table class="barchart">
+    <table
+      class="barchart"
+      :style="{
+        '--meter-unit': meterWidth(
+          1,
+          Math.max(...averageGuessesRemainingPerBoardLength.values()),
+        ),
+      }"
+    >
       <thead>
         <tr>
           <th>Board length</th>
@@ -104,8 +112,20 @@
           <td>
             <span class="u-caps">{{ key }}</span>
           </td>
-          <td>
-            <span class="u-caps">{{ count.toFixed(2) }}</span>
+          <td class="meter-cell">
+            <span
+              class="meter"
+              :style="{
+                '--meter-width': meterWidth(
+                  count,
+                  Math.max(...averageGuessesRemainingPerBoardLength.values()),
+                ),
+              }"
+            >
+              <span class="u-caps" :data-count="count || 0">{{
+                count.toFixed(2)
+              }}</span>
+            </span>
           </td>
         </tr>
       </tbody>
@@ -119,13 +139,13 @@ import { useGameStore } from "@/stores/game";
 const game = useGameStore();
 
 const gotStats = computed(
-  () => game.stats && Object.keys(game.stats).length > 0
+  () => game.stats && Object.keys(game.stats).length > 0,
 );
 
 const totalGamesPlayed = computed(() =>
   Object.values(game.stats)
     .flatMap((boardLength) => Object.values(boardLength))
-    .reduce((acc, val) => acc + val)
+    .reduce((acc, val) => acc + val),
 );
 
 const gamesPlayedPerBoard = computed(() => {
@@ -133,7 +153,7 @@ const gamesPlayedPerBoard = computed(() => {
   Object.entries(game.stats).forEach(([key, val]) => {
     gamesPlayed.set(
       key,
-      Object.values(val).reduce((acc, val) => acc + val)
+      Object.values(val).reduce((acc, val) => acc + val),
     );
   });
   return gamesPlayed;
@@ -144,7 +164,7 @@ const totalWinRate = computed(() => {
     .flatMap((boardLength) => boardLength["-1"] || 0)
     .reduce((acc, val) => acc + val);
   return Math.round(
-    ((totalGamesPlayed.value - losses) * 100) / totalGamesPlayed.value
+    ((totalGamesPlayed.value - losses) * 100) / totalGamesPlayed.value,
   );
 });
 
@@ -176,7 +196,7 @@ const averageGuessesRemainingPerBoardLength = computed(() => {
     const totalGames = filteredStats.reduce((acc, [, val]) => acc + val, 0);
     const totalGuesses = filteredStats.reduce(
       (acc, [guess, val]) => acc + guess * val,
-      0
+      0,
     );
     averageStats.set(key, totalGuesses / totalGames);
   });
@@ -192,7 +212,9 @@ const meterWidth = (count = 0, max = 1) => `${(count / max) * 100}%`;
   border-collapse: collapse;
   font-size: 0.8em;
   line-height: 1;
-  font-variation-settings: "wdth" 100, "wght" 400;
+  font-variation-settings:
+    "wdth" 100,
+    "wght" 400;
   margin-bottom: var(--gutter);
 }
 .barchart th,
@@ -274,16 +296,22 @@ const meterWidth = (count = 0, max = 1) => `${(count / max) * 100}%`;
 .stat-block h3 {
   font-size: 0.75rem;
   line-height: 1;
-  font-variation-settings: "wdth" 100, "wght" 400;
+  font-variation-settings:
+    "wdth" 100,
+    "wght" 400;
   letter-spacing: 0.03em;
 }
 
 .stat-block p {
   font-size: 16cqi;
-  font-variation-settings: "wdth" 60, "wght" 700;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 700;
   text-shadow: var(--letter-shadow);
 }
 .stat-block .percent {
-  font-variation-settings: "wdth" 60, "wght" 350;
+  font-variation-settings:
+    "wdth" 60,
+    "wght" 350;
 }
 </style>
