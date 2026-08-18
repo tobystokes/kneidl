@@ -4,6 +4,7 @@
       aria-label="Previous guesses"
       class="guesses"
       name="guess"
+      @after-enter="onGuessEnterComplete"
       tag="ul"
     >
       <li v-for="guess in preGuesses" :key="guess">
@@ -39,7 +40,12 @@ const game = useGameStore();
 const props = defineProps({
   boardIndex: Number,
 });
+const emit = defineEmits(["guess-reveal-complete"]);
 const word = computed(() => game.words[props.boardIndex]);
+
+const onGuessEnterComplete = () => {
+  if (game.gameOver) emit("guess-reveal-complete");
+};
 
 const preGuesses = computed(() => {
   if (!word.value) return [];

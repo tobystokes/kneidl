@@ -4,17 +4,21 @@
     <MenuPanel />
     <main v-if="!routes.menuOpen">
       <LetterInput></LetterInput>
-      <GameOver v-if="game.gameOver" />
+      <GameOver v-if="showGameOver" />
       <div class="game-grid">
-        <GameBoard v-for="i in game.boards" :board-index="i - 1" />
+        <GameBoard
+          v-for="i in game.boards"
+          :board-index="i - 1"
+          @guess-reveal-complete="onFinalGuessReveal"
+        />
       </div>
     </main>
-    <Keyboard v-if="!routes.menuOpen && !game.gameOver" />
+    <Keyboard v-if="!routes.menuOpen && !showGameOver" />
   </div>
 </template>
 
 <script setup>
-import { onMounted, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/game";
 import { useRoutesStore } from "@/stores/routes";
@@ -27,13 +31,27 @@ import MenuPanel from "@/components/MenuPanel.vue";
 const game = useGameStore();
 const routes = useRoutesStore();
 const { gameOver } = storeToRefs(game);
+const showGameOver = ref(false);
+const waitingForFinalReveal = ref(false);
+
+const onFinalGuessReveal = () => {
+  if (!waitingForFinalReveal.value) return;
+  waitingForFinalReveal.value = false;
+  showGameOver.value = true;
+};
 
 onMounted(() => {
   if (!game.words.length) game.startNewGame();
 });
 
 watch(gameOver, (isGameOver) => {
-  if (!!isGameOver) game.saveStat();
+  if (!!isGameOver) {
+    game.saveStat();
+    waitingForFinalReveal.value = true;
+  } else {
+    waitingForFinalReveal.value = false;
+    showGameOver.value = false;
+  }
 });
 </script>
 
