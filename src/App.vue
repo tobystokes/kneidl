@@ -42,6 +42,11 @@ const onFinalGuessReveal = () => {
 
 onMounted(() => {
   if (!game.words.length) game.startNewGame();
+
+  if (game.gameOver) {
+    waitingForFinalReveal.value = false;
+    showGameOver.value = true;
+  }
 });
 
 watch(gameOver, (isGameOver) => {

@@ -22,10 +22,7 @@ const game = useGameStore();
 .guess {
   display: grid;
   width: 100%;
-  height: 20cqi;
-  /* aspect-ratio: 5 / 1; */
   grid-template-columns: repeat(5, 1fr);
-  margin-bottom: 0.25rem;
 }
 .guess .letter {
   font-size: 15cqi;
@@ -50,7 +47,7 @@ const game = useGameStore();
 }
 .guess .focussed:before {
   content: "_";
-  font-variation-settings: "wdth" 200;
+  font-variation-settings: "wdth" 120;
   animation-name: blink;
   animation-duration: 1s;
   animation-iteration-count: infinite;

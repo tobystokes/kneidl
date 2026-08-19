@@ -140,7 +140,7 @@ const keyClick = (key) => {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   font-variation-settings:
     "wdth" 90,
-    "wght" 440;
+    "wght" 600;
   z-index: 1;
   box-shadow: 0.5cqi 1cqi 0 var(--col-primary-25);
 }

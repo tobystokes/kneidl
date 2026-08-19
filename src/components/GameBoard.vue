@@ -74,27 +74,28 @@ const preGuesses = computed(() => {
   background-color: var(--col-primary-50);
   color: var(--col-bg);
   font-variation-settings:
-    "wdth" 200,
-    "wght" 250;
+    "wdth" 120,
+    "wght" 400;
   font-size: 7.5cqi;
+  padding-inline: 0;
 }
 .guesses .right {
   background-color: var(--col-right);
   font-variation-settings:
-    "wdth" 200,
-    "wght" 600;
+    "wdth" 120,
+    "wght" 800;
 }
 .guesses .warm {
   /* Right Letter, Wrong Place */
   background-color: var(--col-warm);
   font-variation-settings:
-    "wdth" 200,
-    "wght" 600;
+    "wdth" 120,
+    "wght" 800;
 }
 .guesses .solved {
   font-variation-settings:
     "wdth" 60,
-    "wght" 600;
+    "wght" 800;
   font-size: 22.5cqi;
 }
 .guesses li {

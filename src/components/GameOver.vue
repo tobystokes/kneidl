@@ -64,8 +64,8 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
 .gameover h1 {
   font-size: 3em;
   font-variation-settings:
-    "wdth" 180,
-    "wght" 600;
+    "wdth" 120,
+    "wght" 800;
   line-height: 1;
   text-shadow: var(--letter-shadow);
   margin-top: 0.5em;
@@ -78,7 +78,7 @@ const result = (word) => (game.guesses.includes(word) ? "solved" : "unsolved");
   justify-content: center;
   font-variation-settings:
     "wdth" 60,
-    "wght" 600;
+    "wght" 800;
   font-size: 3em;
   background-color: var(--col-primary-50);
   /* aspect-ratio: 1; */

@@ -38,7 +38,9 @@
   position: absolute;
   right: 2rem;
   top: 2rem;
-  font-variation-settings: "wdth" 200, "wght" 250;
+  font-variation-settings:
+    "wdth" 120,
+    "wght" 400;
   background: transparent;
   border: 0;
   font-size: 2rem;
